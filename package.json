@@ -1,0 +1,33 @@
+{
+  "name": "ultrawork-agent",
+  "version": "1.0.0",
+  "description": "UltraWork 多智能体调度系统 - Claude Code Skill，一键触发专家军团，任务完成前绝不罢休",
+  "main": "skills/ultrawork/SKILL.md",
+  "keywords": [
+    "claude",
+    "claude-code",
+    "skill",
+    "agent",
+    "ultrawork",
+    "multi-agent",
+    "automation"
+  ],
+  "author": "paskaa",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paskaa/ultrawork-agent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/paskaa/ultrawork-agent/issues"
+  },
+  "homepage": "https://github.com/paskaa/ultrawork-agent#readme",
+  "files": [
+    "skills/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
