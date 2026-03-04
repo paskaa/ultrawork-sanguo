@@ -1,33 +1,54 @@
 {
   "name": "ultrawork-agent",
   "version": "1.0.0",
-  "description": "UltraWork 多智能体调度系统 - Claude Code Skill，一键触发专家军团，任务完成前绝不罢休",
-  "main": "skills/ultrawork/SKILL.md",
+  "description": "UltraWork 多智能体调度系统 - 自律军团，任务完成前绝不罢休",
   "keywords": [
-    "claude",
-    "claude-code",
-    "skill",
     "agent",
-    "ultrawork",
+    "scheduler",
     "multi-agent",
-    "automation"
+    "automation",
+    "ai",
+    "llm",
+    "claude",
+    "opencode",
+    "orchestration"
   ],
-  "author": "paskaa",
+  "author": "",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/paskaa/ultrawork-agent.git"
+    "url": "https://github.com/paskaa/ultrawork-agent"
   },
   "bugs": {
     "url": "https://github.com/paskaa/ultrawork-agent/issues"
   },
   "homepage": "https://github.com/paskaa/ultrawork-agent#readme",
+  "main": "scripts/index.js",
+  "bin": {
+    "ultrawork": "./bin/ultrawork.js",
+    "ulw": "./bin/ultrawork.js"
+  },
   "files": [
-    "skills/",
+    "bin/",
+    "scripts/",
+    "agents/",
+    "categories/",
+    "SKILL.md",
+    "config.json",
+    "models.json",
     "README.md",
     "LICENSE"
   ],
+  "scripts": {
+    "start": "node bin/ultrawork.js",
+    "test": "node scripts/test.js"
+  },
   "engines": {
     "node": ">=14.0.0"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {},
+  "devDependencies": {}
 }

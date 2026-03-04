@@ -1,0 +1,93 @@
+{
+  "version": "1.0.0",
+  "name": "ultrawork",
+  "description": "UltraWork 多智能体调度系统",
+
+  "triggers": {
+    "commands": ["/ultrawork", "/ulw", "/ulw-loop", "ultrawork", "ulw", "ulw-loop"],
+    "keywords": ["ultrawork", "ulw "],
+    "patterns": ["^ultrawork\\s+", "^ulw\\s+", "^/?ulw-loop\\s+"]
+  },
+
+  "agents": {
+    "sisyphus": {
+      "role": "主调度器",
+      "description": "协调所有专家 Agent，负责任务分类、分配和监控",
+      "model": "glm-5",
+      "priority": 1
+    },
+    "hephaestus": {
+      "role": "深度执行者",
+      "description": "自主深度工作，不需要保姆式指导",
+      "model": "glm-5",
+      "categories": ["deep", "quick", "visual-engineering"],
+      "priority": 2
+    },
+    "prometheus": {
+      "role": "战略规划师",
+      "description": "访谈式需求分析，架构设计，决策支持",
+      "model": "glm-5",
+      "categories": ["ultrabrain"],
+      "priority": 2
+    },
+    "explorer": {
+      "role": "探索者",
+      "description": "代码搜索，信息收集，模式发现",
+      "model": "glm-5",
+      "categories": ["deep", "visual-engineering"],
+      "priority": 3
+    }
+  },
+
+  "categories": {
+    "visual-engineering": {
+      "description": "前端、UI/UX、设计相关工作",
+      "keywords": ["UI", "界面", "样式", "CSS", "Vue", "组件", "前端", "页面", "交互", "布局", "element", "设计"],
+      "primaryModel": "gemini-2.5-pro",
+      "fallbackModel": "glm-5"
+    },
+    "deep": {
+      "description": "深度自主调研与执行",
+      "keywords": ["重构", "架构", "实现", "开发", "复杂", "功能", "模块", "系统", "集成"],
+      "primaryModel": "kimi-k2.5",
+      "fallbackModel": "glm-5"
+    },
+    "quick": {
+      "description": "单文件修改、小修复",
+      "keywords": ["修复", "bug", "修改", "更新", "改", "typo", "错", "问题", "fix"],
+      "primaryModel": "glm-5",
+      "fallbackModel": "glm-5"
+    },
+    "ultrabrain": {
+      "description": "复杂逻辑、架构决策",
+      "keywords": ["设计", "方案", "决策", "架构", "规划", "思考", "分析", "策略", "评估"],
+      "primaryModel": "kimi-k2.5",
+      "fallbackModel": "glm-5"
+    }
+  },
+
+  "ralphLoop": {
+    "enabled": true,
+    "maxIterations": 10,
+    "completionThreshold": 100,
+    "checkInterval": 5000
+  },
+
+  "intentGate": {
+    "enabled": true,
+    "clarificationThreshold": 0.7,
+    "askForClarification": true
+  },
+
+  "parallelExecution": {
+    "enabled": true,
+    "maxConcurrentAgents": 5,
+    "timeout": 300000
+  },
+
+  "logging": {
+    "enabled": true,
+    "level": "info",
+    "file": ".opencode/ultrawork/logs/ultrawork.log"
+  }
+}

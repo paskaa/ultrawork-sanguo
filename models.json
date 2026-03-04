@@ -1,0 +1,107 @@
+{
+  "version": "1.0.0",
+  "defaultModel": "glm-5",
+
+  "models": {
+    "glm-5": {
+      "provider": "zhipu",
+      "displayName": "GLM-5",
+      "description": "智谱 GLM-5，快速高效，适合通用任务",
+      "strengths": ["general", "coding", "chinese", "fast"],
+      "weaknesses": ["complex-reasoning"],
+      "cost": "low",
+      "speed": "fast",
+      "maxTokens": 128000,
+      "available": true
+    },
+    "kimi-k2.5": {
+      "provider": "moonshot",
+      "displayName": "Kimi K2.5",
+      "description": "月之暗面 Kimi，擅长长文本理解和复杂推理",
+      "strengths": ["reasoning", "long-context", "chinese", "coding"],
+      "weaknesses": ["speed"],
+      "cost": "medium",
+      "speed": "medium",
+      "maxTokens": 200000,
+      "available": false,
+      "apiKeyEnv": "KIMI_API_KEY"
+    },
+    "gemini-2.5-pro": {
+      "provider": "google",
+      "displayName": "Gemini 2.5 Pro",
+      "description": "Google Gemini，擅长多模态和视觉任务",
+      "strengths": ["visual", "reasoning", "multimodal", "coding"],
+      "weaknesses": ["chinese"],
+      "cost": "medium",
+      "speed": "medium",
+      "maxTokens": 1000000,
+      "available": false,
+      "apiKeyEnv": "GOOGLE_API_KEY"
+    },
+    "gpt-4o": {
+      "provider": "openai",
+      "displayName": "GPT-4o",
+      "description": "OpenAI GPT-4o，全能型模型",
+      "strengths": ["reasoning", "coding", "general", "multimodal"],
+      "weaknesses": ["cost"],
+      "cost": "high",
+      "speed": "medium",
+      "maxTokens": 128000,
+      "available": false,
+      "apiKeyEnv": "OPENAI_API_KEY"
+    }
+  },
+
+  "categoryMapping": {
+    "visual-engineering": {
+      "primary": "gemini-2.5-pro",
+      "fallback": ["glm-5"],
+      "reason": "Gemini 擅长视觉和多模态任务，适合前端开发"
+    },
+    "deep": {
+      "primary": "kimi-k2.5",
+      "fallback": ["glm-5"],
+      "reason": "Kimi 擅长长文本理解和复杂推理，适合深度开发"
+    },
+    "quick": {
+      "primary": "glm-5",
+      "fallback": ["glm-5"],
+      "reason": "GLM-5 快速高效，适合快速修复任务"
+    },
+    "ultrabrain": {
+      "primary": "kimi-k2.5",
+      "fallback": ["glm-5"],
+      "reason": "Kimi 擅长复杂推理，适合架构决策"
+    }
+  },
+
+  "routingRules": [
+    {
+      "condition": "model.available === true",
+      "action": "use primary model"
+    },
+    {
+      "condition": "model.available === false",
+      "action": "fallback to first available model in fallback list"
+    },
+    {
+      "condition": "no available models",
+      "action": "use defaultModel"
+    }
+  ],
+
+  "costOptimization": {
+    "enabled": true,
+    "rules": [
+      {
+        "category": "quick",
+        "preferCheapest": true
+      },
+      {
+        "category": "deep",
+        "preferCheapest": false,
+        "considerQuality": true
+      }
+    ]
+  }
+}

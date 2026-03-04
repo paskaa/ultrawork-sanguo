@@ -1,14 +1,10 @@
-# Dependencies
+logs/
+*.log
 node_modules/
 
-# Logs
-logs
-*.log
-npm-debug.log*
-
-# OS files
-.DS_Store
-Thumbs.db
+# 测试文件
+test/
+*.test.js
 
 # IDE
 .idea/
@@ -16,13 +12,11 @@ Thumbs.db
 *.swp
 *.swo
 
-# Build
-dist/
-build/
+# 系统文件
+.DS_Store
+Thumbs.db
 
-# Test
-coverage/
-
-# Misc
-*.bak
+# 临时文件
 *.tmp
+*.temp
+.npmignore
