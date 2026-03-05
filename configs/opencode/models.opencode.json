@@ -1,8 +1,8 @@
 {
   "version": "1.3.1",
-  "platform": "qoder",
+  "platform": "opencode",
   "defaultModel": "q35model",
-  "description": "Qoder 平台支持的模型配置 - 三层架构版",
+  "description": "OpenCode 平台支持的模型配置 - 三层架构版",
 
   "modelKeyMapping": {
     "gmodel": {
@@ -65,12 +65,12 @@
       "available": true,
       "supportsImage": true
     },
-    "Qwen-Coder-Qoder-1.0": {
-      "provider": "qoder",
-      "modelId": "Qwen-Coder-Qoder-1.0",
+    "Qwen-Coder-OpenCode-1.0": {
+      "provider": "opencode",
+      "modelId": "Qwen-Coder-OpenCode-1.0",
       "key": "q35model",
-      "displayName": "Qwen Coder Qoder 1.0",
-      "description": "Qoder 基于 Qwen Coder 定制的编码模型，提供更好的端到端编程体验",
+      "displayName": "Qwen Coder OpenCode 1.0",
+      "description": "OpenCode 基于 Qwen Coder 定制的编码模型，提供更好的端到端编程体验",
       "strengths": ["coding", "code-generation", "debugging", "refactoring"],
       "weaknesses": [],
       "cost": "low",

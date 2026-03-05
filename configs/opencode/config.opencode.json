@@ -1,12 +1,12 @@
 {
   "version": "1.3.1",
   "name": "ultrawork",
-  "description": "UltraWork 三国军团调度系统 - Qoder 平台适配版 (三层架构)",
+  "description": "UltraWork 三国军团调度系统 - OpenCode 平台适配版 (三层架构)",
 
   "triggers": {
     "commands": ["/ultrawork", "/ulw", "/ulw-loop", "ultrawork", "ulw", "ulw-loop"],
     "keywords": ["ultrawork", "ulw "],
-    "patterns": ["^ultrawork\s+", "^ulw\s+", "^/?ulw-loop\s+"]
+    "patterns": ["^ultrawork\\s+", "^ulw\\s+", "^/?ulw-loop\\s+"]
   },
 
   "modelKeys": {
