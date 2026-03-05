@@ -68,7 +68,7 @@ const Dispatcher = require('./dispatcher');
 const RalphLoop = require('./ralph-loop');
 const TaskQueue = require('./task-queue');
 const ModelRouter = require('./model-router');
-const TmuxManager = require('./tmux-manager');
+const SimpleStatusBar = require('./simple-status-bar');
 const StatusReporter = require('./status-reporter');
 
 // 初始化
@@ -104,26 +104,22 @@ const UltraWork = {
    * 执行任务
    */
   async execute(request, options = {}) {
-    const { loop = false, noTmux = false } = options;
+    const { loop = false } = options;
 
-    console.log('═'.repeat(50));
-    console.log('  UltraWork 多智能体调度系统');
-    console.log('═'.repeat(50));
-    console.log(`请求: ${request}`);
-    console.log(`模式: ${loop ? '循环执行' : '单次执行'}`);
-    console.log('─'.repeat(50));
+    // 初始化状态栏
+    SimpleStatusBar
+      .setTask(request)
+      .setProgress(0)
+      .addAgent('诸葛亮', '孔明', 'Qwen3.5-Plus', 'IDLE')
+      .addAgent('赵云', '子龙', 'Qwen-Coder-Qoder-1.0', 'IDLE')
+      .addAgent('周瑜', '公瑾', 'GLM-5', 'IDLE')
+      .addAgent('司马懿', '仲达', 'Qwen3.5-Plus', 'IDLE')
+      .addAgent('关羽', '云长', 'Qwen-Coder-Qoder-1.0', 'IDLE')
+      .addAgent('张飞', '翼德', 'MiniMax-M2.5', 'IDLE')
+      .print();
 
     // 初始化状态报告器
     StatusReporter.setTask(request);
-
-    // 启动 tmux 状态面板
-    if (!noTmux) {
-      TmuxManager.startStatusPanel(request).then(started => {
-        if (started) {
-          console.log('[UltraWork] 状态面板已启动');
-        }
-      });
-    }
 
     let result;
 
@@ -135,10 +131,7 @@ const UltraWork = {
 
     // 标记完成
     StatusReporter.complete(result.summary || '任务完成');
-
-    console.log('─'.repeat(50));
-    console.log('执行完成');
-    console.log('═'.repeat(50));
+    SimpleStatusBar.setProgress(100).addLog('任务完成').print();
 
     return result;
   },
