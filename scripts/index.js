@@ -68,7 +68,7 @@ const Dispatcher = require('./dispatcher');
 const RalphLoop = require('./ralph-loop');
 const TaskQueue = require('./task-queue');
 const ModelRouter = require('./model-router');
-const SimpleStatusBar = require('./simple-status-bar');
+const PlainStatusBar = require('./plain-status-bar');
 const StatusReporter = require('./status-reporter');
 
 // 初始化
@@ -107,9 +107,10 @@ const UltraWork = {
     const { loop = false } = options;
 
     // 初始化状态栏
-    SimpleStatusBar
+    PlainStatusBar
       .setTask(request)
       .setProgress(0)
+      .setDetail('平台', detectedPlatform?.name || 'Default')
       .addAgent('诸葛亮', '孔明', 'Qwen3.5-Plus', 'IDLE')
       .addAgent('赵云', '子龙', 'Qwen-Coder-Qoder-1.0', 'IDLE')
       .addAgent('周瑜', '公瑾', 'GLM-5', 'IDLE')
@@ -131,7 +132,7 @@ const UltraWork = {
 
     // 标记完成
     StatusReporter.complete(result.summary || '任务完成');
-    SimpleStatusBar.setProgress(100).addLog('任务完成').print();
+    PlainStatusBar.setProgress(100).addLog('任务完成').print();
 
     return result;
   },
