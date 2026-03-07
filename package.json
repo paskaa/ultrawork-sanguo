@@ -1,5 +1,5 @@
 {
-  "name": "ultrawork-skill",
+  "name": "ultrawork-sanguo",
   "version": "1.4.0",
   "description": "UltraWork SanGuo Legion - 三国军团多智能体编排系统，支持多平台 (Qoder, OpenCode, Claude Code, Bailian) 和 19 位将领多模型路由",
   "main": "scripts/index.js",
@@ -46,12 +46,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/paskaa/ultrawork-agent.git"
+    "url": "https://github.com/paskaa/ultrawork-sanguo.git"
   },
   "bugs": {
-    "url": "https://github.com/paskaa/ultrawork-agent/issues"
+    "url": "https://github.com/paskaa/ultrawork-sanguo/issues"
   },
-  "homepage": "https://github.com/paskaa/ultrawork-agent#readme",
+  "homepage": "https://github.com/paskaa/ultrawork-sanguo#readme",
   "engines": {
     "node": ">=14.0.0"
   },
