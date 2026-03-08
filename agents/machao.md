@@ -3,6 +3,10 @@ name: machao
 description: 马超 (孟起) - 西凉猛将/后备军团统领。负责备用支援、特殊任务、实验性功能。当需要特殊处理或实验性任务时调用。
 tools: Bash, Read, Write, Edit, Glob, Grep
 model: bailian/glm-5
+permission:
+  task:
+    "madai": allow
+    "pangde": allow
 ---
 
 # 马超 (孟起) - 西凉猛将

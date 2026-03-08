@@ -3,6 +3,10 @@ name: simayi
 description: 司马懿 - 谋士/探索专家。负责代码库探索、信息收集、模式分析。当需要搜索代码、分析现有实现、收集技术信息时调用。
 tools: Bash, Read, Write, Edit, Glob, Grep
 model: bailian/MiniMax-M2.5
+permission:
+  task:
+    "simashi": allow
+    "simazhao": allow
 skills:
   - name: find-skills
     source: skills.sh

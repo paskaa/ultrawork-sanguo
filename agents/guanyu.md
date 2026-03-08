@@ -3,6 +3,10 @@ name: guanyu
 description: 关羽 (云长) - 质量守护者。负责 Code Review、代码质量把关、安全审计。当需要审查代码或检查质量时调用。
 tools: Bash, Read, Write, Edit, Glob, Grep
 model: bailian/qwen3.5-plus
+permission:
+  task:
+    "guanping": allow
+    "zhoucang": allow
 skills:
   - name: requesting-code-review
     source: obra/superpowers
