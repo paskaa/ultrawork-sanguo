@@ -1,0 +1,76 @@
+{
+  "name": "ultrawork-sanguo",
+  "version": "1.5.0",
+  "description": "UltraWork SanGuo Legion - 三国军团多智能体编排系统，26位武将、严格层级调用架构、支持多平台 (Qoder, OpenCode, Claude Code, Bailian)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "scripts/",
+    "agents/",
+    "categories/",
+    "config/",
+    "skills/",
+    "commands/",
+    "docs/",
+    "bin/",
+    "templates/"
+  ],
+  "bin": {
+    "ultrawork": "./bin/ultrawork.js",
+    "ulw": "./bin/ultrawork.js",
+    "ultrawork-init": "./bin/ultrawork-init.js"
+  },
+  "scripts": {
+    "start": "node scripts/index.js",
+    "detect": "node scripts/env-detector.js detect",
+    "init": "node scripts/env-detector.js init",
+    "postinstall": "node scripts/post-install.js",
+    "test": "echo \"No tests specified\"",
+    "publish:npm": "npm publish --access public"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "qoder",
+    "opencode",
+    "skill",
+    "multi-agent",
+    "orchestration",
+    "three-kingdoms",
+    "sanguo",
+    "ai",
+    "llm",
+    "glm-5",
+    "qwen",
+    "kimi",
+    "minimax",
+    "hierarchical",
+    "e2e-testing",
+    "monitoring"
+  ],
+  "author": "UltraWork Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paskaa/ultrawork-sanguo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/paskaa/ultrawork-sanguo/issues"
+  },
+  "homepage": "https://github.com/paskaa/ultrawork-sanguo#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
