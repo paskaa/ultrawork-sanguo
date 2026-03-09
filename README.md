@@ -130,22 +130,8 @@ cp SKILL.md ~/.claude/skills/ultrawork/SKILL.md
 | **GuanYu** | 关羽(云长) | 质量守护者 | Qwen3.5-Plus | 0.2x |
 | **ZhangFei** | 张飞(翼德) | 快速修复者 | Qwen3.5-Plus | 0.2x |
 | **MaChao** | 马超(孟起) | 实验性任务 | MiniMax-M2.5 | 0.2x |
-
-### 中层 - 测试团队
-
-| Agent | 角色 | 职责 | 模型 | 费用 |
-|-------|------|------|------|------|
-| **XuShu** | 徐庶(元直) | 测试专家/统领 | Qwen3.5-Plus | 0.2x |
-| **PangLin** | 庞林 | 前端测试专家 | Qwen3.5-Plus | 0.2x |
-| **YanYan** | 严颜 | 后端测试专家 | Qwen3.5-Plus | 0.2x |
-
-### 中层 - 监察团队
-
-| Agent | 角色 | 职责 | 模型 | 费用 |
-|-------|------|------|------|------|
+| **XuShu** | 徐庶(元直) | 测试专家 | Qwen3.5-Plus | 0.2x |
 | **ManChong** | 满宠(伯宁) | 监察指挥官 | GLM-5 | 0.5x |
-| **ChengYu** | 程昱(仲德) | 前端监控专家 | MiniMax-M2.5 | 0.2x |
-| **JiaXu** | 贾诩(文和) | 后端监控专家 | MiniMax-M2.5 | 0.2x |
 
 ### 底层 - 部将
 
@@ -163,6 +149,10 @@ cp SKILL.md ~/.claude/skills/ultrawork/SKILL.md
 | ZhangFei | **WuLan** | 吴兰 | 即时修复专家 | Qwen3.5-Plus | 0.2x |
 | MaChao | **PangDe** | 庞德 | 特殊任务专家 | Qwen3.5-Plus | 0.2x |
 | MaChao | **MaDai** | 马岱 | 稳健支援专家 | MiniMax-M2.5 | 0.2x |
+| XuShu | **PangLin** | 庞林 | 前端测试专家 | Qwen3.5-Plus | 0.2x |
+| XuShu | **YanYan** | 严颜 | 后端测试专家 | Qwen3.5-Plus | 0.2x |
+| ManChong | **ChengYu** | 程昱(仲德) | 前端监控专家 | MiniMax-M2.5 | 0.2x |
+| ManChong | **JiaXu** | 贾诩(文和) | 后端监控专家 | MiniMax-M2.5 | 0.2x |
 
 ## 📋 任务分类与调度
 
