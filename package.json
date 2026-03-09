@@ -1,0 +1,72 @@
+{
+  "name": "ultrawork-sanguo",
+  "version": "1.5.0",
+  "description": "UltraWork SanGuo Legion - 三国军团多智能体编排系统，支持多平台 (Qoder, OpenCode, Claude Code, Bailian) 和 19 位将领多模型路由",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "scripts/",
+    "agents/",
+    "categories/",
+    "configs/",
+    "docs/",
+    "bin/"
+  ],
+  "bin": {
+    "ultrawork": "./bin/ultrawork.js",
+    "ulw": "./bin/ultrawork.js"
+  },
+  "scripts": {
+    "start": "node scripts/index.js",
+    "detect": "node scripts/env-detector.js detect",
+    "init": "node scripts/env-detector.js init",
+    "test": "echo \"No tests specified\"",
+    "publish:npm": "npm publish --access public"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "qoder",
+    "opencode",
+    "skill",
+    "multi-agent",
+    "orchestration",
+    "three-kingdoms",
+    "sanguo",
+    "ai",
+    "llm",
+    "glm-5",
+    "qwen",
+    "kimi",
+    "minimax"
+  ],
+  "author": "UltraWork Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paskaa/ultrawork-sanguo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/paskaa/ultrawork-sanguo/issues"
+  },
+  "homepage": "https://github.com/paskaa/ultrawork-sanguo#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10.0",
+    "picocolors": "^1.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
