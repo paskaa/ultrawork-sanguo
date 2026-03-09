@@ -6,7 +6,9 @@
 [![npm version](https://badge.fury.io/js/ultrawork-sanguo.svg)](https://www.npmjs.com/package/ultrawork-sanguo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**UltraWork SanGuo Legion** 是一个为 Claude Code 设计的多智能体任务编排系统，灵感源自三国时期的分层指挥体系。它将复杂的开发任务自动分配给不同的"将领"（AI Agent），实现高效的并行执行和智能调度。
+**UltraWork SanGuo Legion** 是一个为 [OpenCode](https://opencode.ai) 设计的多智能体插件系统，灵感源自三国时期的分层指挥体系。它将复杂的开发任务自动分配给不同的"将领"（AI Agent），实现高效的并行执行和智能调度。
+
+同时支持 Claude Code、Qoder 等多平台使用。
 
 ## ✨ 核心特性
 
@@ -19,24 +21,26 @@
 
 ## 📦 安装
 
-### 方式1: 通过 npm 安装
+### 方式1: 作为 OpenCode 插件使用（推荐）
+
+```bash
+# 克隆到 OpenCode 插件目录
+git clone https://github.com/paskaa/ultrawork-sanguo.git ~/.opencode/plugins/ultrawork-sanguo
+```
+
+然后重启 OpenCode，插件将自动加载。
+
+### 方式2: 通过 npm 安装
 
 ```bash
 npm install ultrawork-sanguo
 ```
 
-### 方式2: 作为 Claude Code Skill 使用
+### 方式3: 作为 Claude Code Skill 使用
 
 ```bash
 # 复制 SKILL.md 到 Claude Code skills 目录
 cp SKILL.md ~/.claude/skills/ultrawork/SKILL.md
-```
-
-### 方式3: 作为 OpenCode 插件使用
-
-```bash
-# 克隆到 OpenCode 插件目录
-git clone https://github.com/paskaa/ultrawork-sanguo.git ~/.opencode/plugins/ultrawork-sanguo
 ```
 
 ## 🚀 快速开始
@@ -228,10 +232,10 @@ UltraWork 会在每次输出末尾显示实时状态栏:
 
 ## 🔌 支持的平台
 
-- ✅ **Claude Code** - 通过 SKILL.md
-- ✅ **OpenCode** - 通过插件系统
+- ✅ **OpenCode** - 原生插件支持（推荐）
 - ✅ **Qoder** - 通过插件系统
-- ✅ **其他 AI 编辑器** - 通过 npm 包
+- ✅ **Claude Code** - 通过 SKILL.md
+- ✅ **其他 AI 编辑器** - 通过 npm 包集成
 
 ## 📝 API 参考
 
