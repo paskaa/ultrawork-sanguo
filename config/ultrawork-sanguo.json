@@ -86,7 +86,7 @@
     "gaoshun": {
       "name": "高顺",
       "model": "bailian/qwen3-coder-plus",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/glm-5"],
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
       "temperature": 0.1,
       "description": "高顺 - 前端开发专家 (陷阵营统领)。攻坚任务、难点突破、前端组件开发。",
       "role": "frontend_specialist",
@@ -97,7 +97,7 @@
     "chendao": {
       "name": "陈到",
       "model": "bailian/qwen3-coder-plus",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/glm-5"],
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
       "temperature": 0.1,
       "description": "陈到 - 后端开发专家 (白耳兵统领)。精细实现、代码优化、后端接口开发。",
       "role": "backend_specialist",
@@ -213,7 +213,7 @@
     "chengyu": {
       "name": "程昱",
       "model": "bailian/qwen3-coder-plus",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/glm-5"],
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
       "temperature": 0.1,
       "description": "程昱 (仲德) - 前端监控专家 (满宠部将)。专司前端/浏览器日志监控：Console、Network、Vue警告、用户行为追踪。",
       "role": "frontend_monitor",
@@ -224,7 +224,7 @@
     "jiaxu": {
       "name": "贾诩",
       "model": "bailian/qwen3-coder-plus",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/glm-5"],
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
       "temperature": 0.1,
       "description": "贾诩 (文和) - 后端监控专家 (满宠部将)。专司后端/系统监控：Spring Boot日志、API异常、数据库慢查询、系统资源。",
       "role": "backend_monitor",
@@ -234,7 +234,7 @@
     },
     "liuye": {
       "name": "刘晔",
-      "model": "bailian/qwen3-coder",
+      "model": "bailian/qwen3-coder-next",
       "fallback_models": ["bailian/qwen3.5-plus", "bailian/glm-5"],
       "temperature": 0.1,
       "description": "刘晔 (子扬) - E2E测试专家 (满宠部将)。专司端到端测试：Playwright自动化、用户旅程验证、关键流程测试。",
@@ -256,7 +256,7 @@
     "panglin": {
       "name": "庞林",
       "model": "bailian/qwen3-coder-plus",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/glm-5"],
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
       "temperature": 0.1,
       "description": "庞林 - 前端测试专家 (徐庶部将)。专司Vue/Vitest测试、E2E测试、Playwright、前端覆盖率。",
       "role": "frontend_tester",
@@ -267,7 +267,7 @@
     "yanyan": {
       "name": "严颜",
       "model": "bailian/qwen3-coder-plus",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/glm-5"],
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
       "temperature": 0.1,
       "description": "严颜 - 后端测试专家 (徐庶部将)。专司JUnit、Mockito、Spring Boot Test、Java测试。",
       "role": "backend_tester",

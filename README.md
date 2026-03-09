@@ -11,6 +11,7 @@ A hierarchical multi-agent orchestration system with Three Kingdoms themed comma
 - **Strict Hierarchy** - ZhugeLiang → Commanders → Lieutenants (no skipping levels)
 - **10 Task Categories** - Auto-routing based on keywords
 - **Multi-Platform** - Qoder, OpenCode, Claude Code, Bailian
+- **Advanced Models** - Support for Bailian Coding Plan models (qwen3-coder-plus, qwen3-coder-next, qwen3-max-2026-01-23, glm-4.7)
 
 ## 📦 Installation
 
@@ -131,11 +132,21 @@ ultrawork-sanguo/
 
 ## 📝 Changelog
 
-### v1.5.0 (2026-03-09)
+### v1.8.1 (2026-03-09)
+
+- ✨ **New Models**: Added Bailian Coding Plan models support
+  - `qwen3-coder-plus` - Primary coding model for specialists
+  - `qwen3-coder-next` - Fast fallback for coding tasks
+  - `qwen3-max-2026-01-23` - Latest Qwen Max variant
+  - `glm-4.7` - Updated GLM model
+- 🔧 **Updated**: Enhanced fallback chains for all coding specialists (GaoShun, ChenDao, ChengYu, JiaXu, PangLin, YanYan)
+- 🔧 **Updated**: LiuYe (E2E Test) model upgraded to `qwen3-coder-next`
+
+### v1.8.0 (2026-03-08)
 
 - ✨ **New**: 26 Generals (up from 19)
-- ✨ **New**: XuShu Test Team (庞林, 严颜)
-- ✨ **New**: ManChong Monitor Team (程昱, 贾诩, 刘晔)
+- ✨ **New**: XuShu Test Team (庞林，严颜)
+- ✨ **New**: ManChong Monitor Team (程昱，贾诩，刘晔)
 - ✨ **New**: Strict hierarchy dispatch system
 - ✨ **New**: 10 task categories with auto-routing
 - 🔧 **Fix**: All agents have `name` and `commander` fields
