@@ -2,11 +2,21 @@
 name: ultrawork
 description: |
   UltraWork 多智能体调度系统 - 自律军团，任务完成前绝不罢休。
-
-  Triggers when user mentions:
-  - "/ultrawork"、"/ulw"、"/uls"
-  - "ultrawork "、"ulw "、"uls "
-  - "ulw-"、"ulw_loop"
+  
+  支持单点调度 (/ulw) 和完整工作流 (/workflow) 两种模式。
+triggers:
+  - "/ultrawork"
+  - "/ulw"
+  - "/uls"
+  - "/workflow"
+  - "/wf"
+  - "ultrawork "
+  - "ulw "
+  - "uls "
+  - "workflow "
+  - "wf "
+  - "ulw-"
+  - "ulw_loop"
 ---
 
 # UltraWork - 三国军团调度系统
@@ -18,6 +28,8 @@ description: |
 ```
 /ultrawork 实现用户登录功能
 /ulw 修复登录页面的样式问题
+/workflow bugfix 修复登录验证码不显示的问题
+/workflow feature 实现用户管理模块
 ```
 
 ---
@@ -241,3 +253,86 @@ await Task(...)  // 再执行下一个
 ---
 
 *UltraWork - 鞠躬尽瘁，死而后已*
+
+---
+
+## 🔄 完整工作流模式
+
+### 工作流 vs 单点调度
+
+| 模式 | 命令 | 适用场景 | 特点 |
+|------|------|----------|------|
+| **单点调度** | `/ulw <任务>` | 简单任务、快速修复 | 直接指派一个主将完成 |
+| **完整工作流** | `/workflow <类型> <任务>` | 复杂任务、需要质量保证 | 6阶段完整流程 |
+
+### 工作流类型
+
+```
+/workflow bugfix <问题描述>      # Bug修复工作流
+/workflow feature <功能描述>     # 功能开发工作流
+/workflow refactor <重构描述>    # 代码重构工作流
+/workflow review <审查范围>      # 代码审查工作流
+/workflow monitor <监控范围>     # 监控诊断工作流
+```
+
+### 6阶段完整流程
+
+```
+[1. 分析阶段] → 司马懿 + 司马师
+     ↓ 输出: 分析报告、根因定位
+[2. 规划阶段] → 周瑜 + 鲁肃 + 黄盖
+     ↓ 输出: 执行计划、实施步骤
+[3. 修复阶段] → 张飞 + 赵云 + 高顺 + 陈到
+     ↓ 输出: 代码变更、文件列表
+[4. 审查阶段] → 关羽 + 关平 + 周仓
+     ↓ 输出: 审查报告、问题列表
+[5. 测试阶段] → 徐庶 + 庞林 + 严颜 + 刘晔
+     ↓ 输出: 测试报告、覆盖率
+[6. 监控阶段] → 满宠 + 程昱 + 贾诩
+     ↓ 输出: 监控报告、错误检测
+     ↓
+[诸葛亮验收判断]
+     ↓ 不通过
+[循环修复] ← 返回第3阶段 (最多3次)
+     ↓ 通过
+[任务完成]
+```
+
+### 工作流配置
+
+工作流配置位于 `workflows/` 目录：
+
+```
+workflows/
+├── bugfix-workflow.md      # Bug修复工作流定义
+├── feature-workflow.md     # 功能开发工作流定义
+├── refactor-workflow.md    # 重构工作流定义
+├── review-workflow.md      # 审查工作流定义
+└── monitor-workflow.md     # 监控工作流定义
+```
+
+### 验收标准
+
+诸葛亮在每个工作流完成后进行验收判断：
+
+1. **所有阶段完成** ✓
+2. **审查通过** ✓ (无严重问题)
+3. **测试通过** ✓ (无失败用例)
+4. **监控正常** ✓ (无新错误)
+
+如果不通过，自动返回修复阶段重新执行，最多重试3次。
+
+### 状态持久化
+
+工作流状态保存在 `~/.opencode/ultrawork-states/`：
+
+```bash
+# 查看工作流状态
+/workflow status <workflow-id>
+
+# 恢复中断的工作流
+/workflow resume <workflow-id>
+
+# 列出所有工作流
+/workflow list
+```

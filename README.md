@@ -12,7 +12,7 @@
 
 ## ✨ 核心特性
 
-- 🎭 **25位三国将领**: 诸葛亮、赵云、周瑜、司马懿、关羽、张飞、马超、徐庶等，各司其职
+- 🎭 **32位三国将领**: 诸葛亮、赵云、周瑜、司马懿、关羽、张飞、马超、徐庶等，各司其职
 - 🧠 **多模型路由**: 支持 GLM-5、Qwen3.5-Plus、Kimi-K2.5、MiniMax-M2.5 等多种模型
 - ⚡ **智能任务分类**: 自动识别任务类型（前端开发、后端开发、架构设计、代码探索等）
 - 🔄 **并行执行**: 同一消息中并行调度多个将领，提高执行效率
@@ -53,6 +53,8 @@ cp SKILL.md ~/.claude/skills/ultrawork/SKILL.md
 |------|------|
 | `/ultrawork` | 显示帮助和状态 |
 | `/ulw <任务>` | 执行一个任务 |
+| `/workflow <类型> <任务>` | 执行完整工作流（6阶段） |
+| `/wf <类型> <任务>` | `/workflow` 快捷命令 |
 | `ulw-` | 启动 UltraWork 对话模式 |
 
 ### 使用示例
@@ -129,11 +131,26 @@ cp SKILL.md ~/.claude/skills/ultrawork/SKILL.md
 
 | Agent | 角色 | 职责 | 模型 | 费用 |
 |-------|------|------|------|------|
-| **GuanYu** | 关羽(云长) | 质量守护者 | Qwen3.5-Plus | 0.2x |
-| **ZhangFei** | 张飞(翼德) | 快速修复者 | Qwen3.5-Plus | 0.2x |
-| **MaChao** | 马超(孟起) | 实验性任务 | MiniMax-M2.5 | 0.2x |
-| **XuShu** | 徐庶(元直) | 测试专家 | Qwen3.5-Plus | 0.2x |
-| **ManChong** | 满宠(伯宁) | 监察指挥官 | GLM-5 | 0.5x |
+| **GuanYu** | 关羽 (云长) | 质量守护者 | Qwen3.5-Plus | 0.2x |
+| **ZhangFei** | 张飞 (翼德) | 快速修复者 | Qwen3.5-Plus | 0.2x |
+| **MaChao** | 马超 (孟起) | 实验性任务 | MiniMax-M2.5 | 0.2x |
+
+### 中层 - 监察团队
+
+| Agent | 角色 | 职责 | 模型 | 费用 |
+|-------|------|------|------|------|
+| **ManChong** | 满宠 (伯宁) | 监察指挥官，统筹全局 | GLM-5 | 0.5x |
+| **ChengYu** | 程昱 (仲德) | 前端监控专家，Console/Network监控 | MiniMax-M2.5 | 0.2x |
+| **JiaXu** | 贾诩 (文和) | 后端监控专家，API 异常/数据库监控 | MiniMax-M2.5 | 0.2x |
+
+### 中层 - 测试团队
+
+| Agent | 角色 | 职责 | 模型 | 费用 |
+|-------|------|------|------|------|
+| **XuShu** | 徐庶 (元直) | 测试专家，测试策略 | Qwen3.5-Plus | 0.2x |
+| **PangLin** | 庞林 | 前端测试专家，Vitest/Playwright | Qwen3.5-Plus | 0.2x |
+| **YanYan** | 严颜 | 后端测试专家，JUnit/Mockito | Qwen3.5-Plus | 0.2x |
+| **LiuYe** | 刘晔 | E2E 测试专家，Playwright/Selenium | Qwen3.5-Plus | 0.2x |
 
 ### 底层 - 部将
 
@@ -153,6 +170,7 @@ cp SKILL.md ~/.claude/skills/ultrawork/SKILL.md
 | MaChao | **MaDai** | 马岱 | 稳健支援专家 | MiniMax-M2.5 | 0.2x |
 | XuShu | **PangLin** | 庞林 | 前端测试专家 | Qwen3.5-Plus | 0.2x |
 | XuShu | **YanYan** | 严颜 | 后端测试专家 | Qwen3.5-Plus | 0.2x |
+| XuShu | **LiuYe** | 刘晔 | E2E 测试专家 | Qwen3.5-Plus | 0.2x |
 | ManChong | **ChengYu** | 程昱(仲德) | 前端监控专家 | MiniMax-M2.5 | 0.2x |
 | ManChong | **JiaXu** | 贾诩(文和) | 后端监控专家 | MiniMax-M2.5 | 0.2x |
 
