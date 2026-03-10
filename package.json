@@ -1,6 +1,6 @@
 {
   "name": "ultrawork-sanguo",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "UltraWork SanGuo Legion - OpenCode 三国军团多智能体插件，支持 25 位将领多模型路由，同时兼容 Qoder、Claude Code、Bailian 等平台",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
