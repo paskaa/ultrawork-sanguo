@@ -1,15 +1,17 @@
-# UltraWork - SanGuo Legion
+# UltraWork - SanGuo Legion v2.0
 
 > 鞠躬尽瘁，死而后已
 > 将帅齐心，其利断金
 
-A hierarchical multi-agent orchestration system with Three Kingdoms themed commanders and lieutenants. **26 generals**, **strict hierarchy dispatch**, supporting multiple platforms (Qoder, OpenCode, Claude Code, Bailian).
+A hierarchical multi-agent orchestration system with Three Kingdoms themed commanders and lieutenants. **45 generals**, **17 command chains**, **100% skill coverage**, **strict hierarchy dispatch**, supporting multiple platforms (Qoder, OpenCode, Claude Code, Bailian).
 
 ## 🌟 Features
 
-- **26 Generals** - 1 Commander-in-Chief, 8 Commanders, 17 Lieutenants
+- **45 Generals** - 1 Commander-in-Chief, 17 Commanders, 27 Lieutenants
+- **17 Command Chains** - Complete coverage of all development scenarios
+- **100% Skill Coverage** - DevOps, Database, Security, Performance, Mobile, API, AI, Web3
 - **Strict Hierarchy** - ZhugeLiang → Commanders → Lieutenants (no skipping levels)
-- **10 Task Categories** - Auto-routing based on keywords
+- **17 Task Categories** - Auto-routing based on keywords
 - **Multi-Platform** - Qoder, OpenCode, Claude Code, Bailian
 - **Advanced Models** - Support for Bailian Coding Plan models (qwen3-coder-plus, qwen3-coder-next, qwen3-max-2026-01-23, glm-4.7)
 
@@ -46,7 +48,7 @@ User: /ulw 搜索用户登录相关代码
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    三国军团层级架构                          │
+│                    三国军团层级架构 v2.0                      │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  Level 1: 主帅 (1人)                                        │
@@ -54,19 +56,28 @@ User: /ulw 搜索用户登录相关代码
 │                                                             │
 │           ↓ 只能调用大都督                                   │
 │                                                             │
-│  Level 2: 大都督 (8人)                                      │
-│  ├── 周瑜 (ZhouYu)     → 鲁肃、黄盖                         │
-│  ├── 赵云 (ZhaoYun)    → 高顺、陈到                         │
-│  ├── 司马懿 (SimaYi)   → 司马师、司马昭                      │
-│  ├── 关羽 (GuanYu)     → 关平、周仓                         │
-│  ├── 张飞 (ZhangFei)   → 雷绪、吴兰                         │
-│  ├── 满宠 (ManChong)   → 程昱、贾诩、刘晔                    │
-│  ├── 徐庶 (XuShu)      → 庞林、严颜                         │
-│  └── 马超 (MaChao)     → 马岱、庞德                         │
+│  Level 2: 大都督 (17人)                                     │
+│  ├── 周瑜 (ZhouYu)      → 鲁肃、黄盖                        │
+│  ├── 赵云 (ZhaoYun)     → 高顺、陈到                        │
+│  ├── 司马懿 (SimaYi)    → 司马师、司马昭                     │
+│  ├── 关羽 (GuanYu)      → 关平、周仓                        │
+│  ├── 张飞 (ZhangFei)    → 雷绪、吴兰                        │
+│  ├── 满宠 (ManChong)    → 程昱、贾诩、刘晔                   │
+│  ├── 徐庶 (XuShu)       → 庞林、严颜                        │
+│  ├── 马超 (MaChao)      → 庞德                              │
+│  ├── 姜维 (JiangWei)    → [独立执行]                        │
+│  ├── 邓艾 (DengAi) 🔥   → 王双、张翼 [DevOps]               │
+│  ├── 张辽 (ZhangLiao) 🔥 → 乐进、李典 [Database]            │
+│  ├── 于禁 (YuJin) 🔥    → 毛玠、董昭 [Security]             │
+│  ├── 张郃 (ZhangHe) 🚀  → 郭淮 [Performance]                │
+│  ├── 甘宁 (GanNing) 🚀  → 凌统、丁奉 [Mobile]               │
+│  ├── 太史慈 (TaiShiCi) 🚀 → 周泰 [API]                      │
+│  ├── 陆逊 (LuXun) 🚀    → 潘璋 [AI]                         │
+│  └── 吕蒙 (LuMeng) 🚀   → 蒋钦 [Web3]                       │
 │                                                             │
 │           ↓ 只能调用自己的部将                               │
 │                                                             │
-│  Level 3: 部将 (17人)                                       │
+│  Level 3: 部将 (27人)                                       │
 │  └── 向各自的大都督汇报，禁止越级                            │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
@@ -74,16 +85,25 @@ User: /ulw 搜索用户登录相关代码
 
 ## 👥 Commanders
 
-| Commander | Role | Team |
-|-----------|------|------|
-| 周瑜 (ZhouYu) | Strategist | 鲁肃、黄盖 |
-| 赵云 (ZhaoYun) | Deep Executor | 高顺、陈到 |
-| 司马懿 (SimaYi) | Explorer | 司马师、司马昭 |
-| 关羽 (GuanYu) | Quality Guard | 关平、周仓 |
-| 张飞 (ZhangFei) | Quick Fixer | 雷绪、吴兰 |
-| 满宠 (ManChong) | Monitor Commander | 程昱、贾诩、刘晔 |
-| 徐庶 (XuShu) | Test Expert | 庞林、严颜 |
-| 马超 (MaChao) | Reserve Commander | 马岱、庞德 |
+| Commander | Role | Team | Category |
+|-----------|------|------|----------|
+| 周瑜 (ZhouYu) | Strategist | 鲁肃、黄盖 | ultrabrain |
+| 赵云 (ZhaoYun) | Deep Executor | 高顺、陈到 | deep/visual-engineering |
+| 司马懿 (SimaYi) | Explorer | 司马师、司马昭 | explore/writing |
+| 关羽 (GuanYu) | Quality Guard | 关平、周仓 | review |
+| 张飞 (ZhangFei) | Quick Fixer | 雷绪、吴兰 | quick |
+| 满宠 (ManChong) | Monitor Commander | 程昱、贾诩、刘晔 | monitor |
+| 徐庶 (XuShu) | Test Expert | 庞林、严颜 | test |
+| 马超 (MaChao) | Reserve Commander | 庞德 | reserve |
+| 姜维 (JiangWei) | File Operations | [独立执行] | fileops |
+| 邓艾 (DengAi) 🔥 | DevOps Commander | 王双、张翼 | devops |
+| 张辽 (ZhangLiao) 🔥 | Database Commander | 乐进、李典 | database |
+| 于禁 (YuJin) 🔥 | Security Commander | 毛玠、董昭 | security |
+| 张郃 (ZhangHe) 🚀 | Performance Commander | 郭淮 | performance |
+| 甘宁 (GanNing) 🚀 | Mobile Commander | 凌统、丁奉 | mobile |
+| 太史慈 (TaiShiCi) 🚀 | API Commander | 周泰 | api |
+| 陆逊 (LuXun) 🚀 | AI Commander | 潘璋 | ai |
+| 吕蒙 (LuMeng) 🚀 | Web3 Commander | 蒋钦 | web3 |
 
 ## 📋 Task Categories
 
@@ -99,11 +119,20 @@ User: /ulw 搜索用户登录相关代码
 | deep | 赵云 | 重构, 架构, 开发, 模块 |
 | writing | 司马懿 | 文档, readme, 说明 |
 | reserve | 马超 | 特殊, 实验, 备用 |
+| fileops | 姜维 | 迁移, 整合, 备份 |
+| devops | 邓艾 🔥 | CI/CD, Docker, K8s |
+| database | 张辽 🔥 | SQL, MySQL, 索引 |
+| security | 于禁 🔥 | 安全, 渗透, 漏洞 |
+| performance | 张郃 🚀 | 性能, Profiling, JVM |
+| mobile | 甘宁 🚀 | iOS, Android, App |
+| api | 太史慈 🚀 | RESTful, GraphQL |
+| ai | 陆逊 🚀 | ML, 深度学习, NLP |
+| web3 | 吕蒙 🚀 | 区块链, 智能合约 |
 
 ## 🔒 Hierarchy Constraints
 
 ```
-✅ ZhugeLiang can only call Commanders
+✅ ZhugeLiang can only call Commanders (17 total)
 ✅ Commanders can only call their own Lieutenants
 ✅ Lieutenants can only report to their Commander
 ❌ No skipping levels

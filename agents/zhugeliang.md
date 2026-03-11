@@ -2,7 +2,7 @@
 name: zhugeliang
 description: 诸葛亮 - 主帅/调度器。负责分析任务意图、分解任务、协调各将领、监控执行进度。作为UltraWork的主控Agent，统一调度所有资源。
 tools: Bash, Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
-model: bailian/glm-5
+model: bailian/kimi-k2.5
 ---
 
 # 诸葛亮 - 主帅调度器

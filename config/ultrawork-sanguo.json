@@ -4,7 +4,7 @@
   "agents": {
     "zhugeliang": {
       "name": "诸葛亮",
-      "model": "bailian/glm-5",
+      "model": "bailian/kimi-k2.5",
       "fallback_models": ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"],
       "temperature": 0.1,
       "description": "诸葛亮 (孔明) - 主帅/调度器。运筹帷幄、调兵遣将，协调整个军团运作。",
@@ -180,25 +180,227 @@
       "role": "reserve_commander",
       "prompt_append": "作为西凉猛将，随时支援各条战线，处理特殊和实验性任务。锦马超，威震西凉。"
     },
-    "madai": {
-      "name": "马岱",
-      "model": "bailian/MiniMax-M2.5",
-      "fallback_models": ["bailian/glm-5", "bailian/qwen3.5-plus"],
-      "temperature": 0.15,
-      "description": "马岱 - 稳健支援专家 (马超堂弟)。跨领域支援、临时任务、稳定执行。",
-      "role": "general_support",
-      "commander": "machao",
-      "prompt_append": "作为马岱，提供稳健的跨领域支援，稳定执行临时任务。"
-    },
     "pangde": {
       "name": "庞德",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
       "temperature": 0.1,
-      "description": "庞德 - 特殊任务专家 (原马超部将)。探索性任务、原型验证、攻坚突击。",
+      "description": "庞德 - 后备支援专家/特殊任务专家 (马超部将)。负责探索性任务、原型验证、稳健执行、攻坚突击。原马岱(稳健支援)职能已整合至此。",
       "role": "special_scout",
       "commander": "machao",
-      "prompt_append": "作为庞德，执行探索性任务和原型验证，白袍银甲，勇冠三军。"
+      "prompt_append": "作为庞德，执行探索性任务、原型验证和稳健支援任务。白袍银甲，勇冠三军。原马岱(稳健支援)职能已整合至此，现由庞德统一负责后备支援。"
+    },
+    "dengai": {
+      "name": "邓艾",
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "temperature": 0.15,
+      "description": "邓艾 (士载) - DevOps大都督。专司CI/CD流水线、容器化部署、自动化运维、环境管理。文武双全，谋略过人。",
+      "role": "devops_commander",
+      "categories": ["devops"],
+      "prompt_append": "作为DevOps大都督，负责自动化部署和运维管理。文武双全，谋略过人。严格遵循层级调用：主帅(诸葛亮)→大都督(你)→部将(王双/张翼)。"
+    },
+    "wangshuang": {
+      "name": "王双",
+      "model": "bailian/qwen3-coder-plus",
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
+      "temperature": 0.1,
+      "description": "王双 - CI/CD专家 (邓艾部将)。专司Jenkins、GitLab CI、自动化构建流水线、部署策略。力大无穷，武艺超群。",
+      "role": "cicd_specialist",
+      "categories": ["devops"],
+      "commander": "dengai",
+      "prompt_append": "作为王双，专精CI/CD流水线。向大都督邓艾汇报，禁止越级向主帅诸葛亮汇报。"
+    },
+    "zhangyi_devops": {
+      "name": "张翼",
+      "model": "bailian/qwen3-coder-plus",
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
+      "temperature": 0.1,
+      "description": "张翼 - 容器专家 (邓艾部将)。专司Docker、Kubernetes、容器编排、服务网格。忠心耿耿，稳重可靠。",
+      "role": "container_specialist",
+      "categories": ["devops"],
+      "commander": "dengai",
+      "prompt_append": "作为张翼，专精容器化技术。向大都督邓艾汇报，禁止越级向主帅诸葛亮汇报。"
+    },
+    "zhangliao": {
+      "name": "张辽",
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "temperature": 0.15,
+      "description": "张辽 (文远) - 数据库大都督。专司数据库架构设计、SQL优化、数据迁移、备份恢复。威震逍遥津，智勇双全。",
+      "role": "database_commander",
+      "categories": ["database"],
+      "prompt_append": "作为数据库大都督，负责数据架构和性能优化。威震逍遥津，智勇双全。严格遵循层级调用：主帅(诸葛亮)→大都督(你)→部将(乐进/李典)。"
+    },
+    "yuejin": {
+      "name": "乐进",
+      "model": "bailian/qwen3-coder-plus",
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
+      "temperature": 0.1,
+      "description": "乐进 - SQL优化专家 (张辽部将)。专司SQL查询优化、索引设计、执行计划分析、慢查询处理。勇猛果敢，身先士卒。",
+      "role": "sql_optimizer",
+      "categories": ["database"],
+      "commander": "zhangliao",
+      "prompt_append": "作为乐进，专精SQL优化。向大都督张辽汇报，禁止越级向主帅诸葛亮汇报。"
+    },
+    "lidian": {
+      "name": "李典",
+      "model": "bailian/qwen3-coder-plus",
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
+      "temperature": 0.1,
+      "description": "李典 - 数据迁移专家 (张辽部将)。专司ETL流程、数据同步、异构迁移、数据清洗。深明大义，沉稳持重。",
+      "role": "data_migration_specialist",
+      "categories": ["database"],
+      "commander": "zhangliao",
+      "prompt_append": "作为李典，专精数据迁移。向大都督张辽汇报，禁止越级向主帅诸葛亮汇报。"
+    },
+    "yujin": {
+      "name": "于禁",
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "temperature": 0.15,
+      "description": "于禁 (文则) - 安全大都督。专司安全审计、渗透测试、漏洞扫描、加密策略。治军严整，沉稳持重。",
+      "role": "security_commander",
+      "categories": ["security"],
+      "prompt_append": "作为安全大都督，负责系统安全审计和防护。治军严整，沉稳持重。严格遵循层级调用：主帅(诸葛亮)→大都督(你)→部将(毛玠/董昭)。"
+    },
+    "maojie": {
+      "name": "毛玠",
+      "model": "bailian/qwen3-coder-plus",
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
+      "temperature": 0.1,
+      "description": "毛玠 - 渗透测试专家 (于禁部将)。专司Web渗透、API安全测试、漏洞挖掘、安全评估。清廉正直，执法如山。",
+      "role": "penetration_tester",
+      "categories": ["security"],
+      "commander": "yujin",
+      "prompt_append": "作为毛玠，专精渗透测试。向大都督于禁汇报，禁止越级向主帅诸葛亮汇报。"
+    },
+    "dongzhao": {
+      "name": "董昭",
+      "model": "bailian/qwen3-coder-plus",
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
+      "temperature": 0.1,
+      "description": "董昭 - 加密安全专家 (于禁部将)。专司数据加密、TLS配置、密钥管理、身份认证。谋略深远，算无遗策。",
+      "role": "crypto_security_specialist",
+      "categories": ["security"],
+      "commander": "yujin",
+      "prompt_append": "作为董昭，专精加密安全。向大都督于禁汇报，禁止越级向主帅诸葛亮汇报。"
+    },
+    "zhanghe": {
+      "name": "张郃",
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "temperature": 0.15,
+      "description": "张郃 (儁乂) - 性能大都督。专司性能分析、系统调优、容量规划、负载测试。智勇双全，善于应变。",
+      "role": "performance_commander",
+      "categories": ["performance"],
+      "prompt_append": "作为性能大都督，负责系统性能分析和调优。智勇双全，善于应变。严格遵循层级调用：主帅(诸葛亮)→大都督(你)→部将(郭淮)。"
+    },
+    "guohuai": {
+      "name": "郭淮",
+      "model": "bailian/qwen3-coder-plus",
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
+      "temperature": 0.1,
+      "description": "郭淮 - 系统性能专家 (张郃部将)。专司Profiling、性能瓶颈定位、JVM调优、数据库性能优化。沉着冷静，谋略深远。",
+      "role": "performance_specialist",
+      "categories": ["performance"],
+      "commander": "zhanghe",
+      "prompt_append": "作为郭淮，专精系统性能分析。向大都督张郃汇报，禁止越级向主帅诸葛亮汇报。"
+    },
+    "ganning": {
+      "name": "甘宁",
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "temperature": 0.15,
+      "description": "甘宁 (兴霸) - 移动大都督。专司iOS/Android开发、跨平台方案、移动性能优化、App架构设计。勇猛果敢，百骑劫营。",
+      "role": "mobile_commander",
+      "categories": ["mobile"],
+      "prompt_append": "作为移动大都督，负责移动开发和跨平台方案。勇猛果敢，百骑劫营。严格遵循层级调用：主帅(诸葛亮)→大都督(你)→部将(凌统/丁奉)。"
+    },
+    "lingtong": {
+      "name": "凌统",
+      "model": "bailian/qwen3-coder-plus",
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
+      "temperature": 0.1,
+      "description": "凌统 - iOS专家 (甘宁部将)。专司Swift开发、UIKit/SwiftUI、iOS架构、App Store发布。忠勇果敢，舍生忘死。",
+      "role": "ios_specialist",
+      "categories": ["mobile"],
+      "commander": "ganning",
+      "prompt_append": "作为凌统，专精iOS开发。向大都督甘宁汇报，禁止越级向主帅诸葛亮汇报。"
+    },
+    "dingfeng": {
+      "name": "丁奉",
+      "model": "bailian/qwen3-coder-plus",
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
+      "temperature": 0.1,
+      "description": "丁奉 - Android专家 (甘宁部将)。专司Kotlin开发、Jetpack组件、Android架构、Google Play发布。勇猛善战，身先士卒。",
+      "role": "android_specialist",
+      "categories": ["mobile"],
+      "commander": "ganning",
+      "prompt_append": "作为丁奉，专精Android开发。向大都督甘宁汇报，禁止越级向主帅诸葛亮汇报。"
+    },
+    "taishici": {
+      "name": "太史慈",
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "temperature": 0.15,
+      "description": "太史慈 (子义) - API大都督。专司RESTful设计、GraphQL、API文档、版本管理。信义为先，胆略过人。",
+      "role": "api_commander",
+      "categories": ["api"],
+      "prompt_append": "作为API大都督，负责接口设计和规范。信义为先，胆略过人。严格遵循层级调用：主帅(诸葛亮)→大都督(你)→部将(周泰)。"
+    },
+    "zhoutai": {
+      "name": "周泰",
+      "model": "bailian/qwen3-coder-plus",
+      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"],
+      "temperature": 0.1,
+      "description": "周泰 - 接口设计专家 (太史慈部将)。专司API规范、接口测试、兼容性验证、文档维护。忠心护主，勇猛无畏。",
+      "role": "api_designer",
+      "categories": ["api"],
+      "commander": "taishici",
+      "prompt_append": "作为周泰，专精接口设计。向大都督太史慈汇报，禁止越级向主帅诸葛亮汇报。"
+    },
+    "luxun": {
+      "name": "陆逊",
+      "model": "bailian/glm-5",
+      "fallback_models": ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"],
+      "temperature": 0.15,
+      "description": "陆逊 (伯言) - AI大都督。专司机器学习、深度学习、智能推荐、NLP处理。书生拜大将，谋略无双。",
+      "role": "ai_commander",
+      "categories": ["ai"],
+      "prompt_append": "作为AI大都督，负责机器学习和智能系统。书生拜大将，谋略无双。严格遵循层级调用：主帅(诸葛亮)→大都督(你)→部将(潘璋)。"
+    },
+    "panzhang": {
+      "name": "潘璋",
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "temperature": 0.1,
+      "description": "潘璋 - 数据科学家 (陆逊部将)。专司数据建模、特征工程、算法实现、模型优化。勇猛善战，执行力强。",
+      "role": "data_scientist",
+      "categories": ["ai"],
+      "commander": "luxun",
+      "prompt_append": "作为潘璋，专精数据科学。向大都督陆逊汇报，禁止越级向主帅诸葛亮汇报。"
+    },
+    "lvmeng": {
+      "name": "吕蒙",
+      "model": "bailian/glm-5",
+      "fallback_models": ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"],
+      "temperature": 0.15,
+      "description": "吕蒙 (子明) - Web3大都督。专司区块链开发、智能合约、DApp、DeFi协议。士别三日，当刮目相看。",
+      "role": "web3_commander",
+      "categories": ["web3"],
+      "prompt_append": "作为Web3大都督，负责区块链和去中心化应用。士别三日，当刮目相看。严格遵循层级调用：主帅(诸葛亮)→大都督(你)→部将(蒋钦)。"
+    },
+    "jiangqin": {
+      "name": "蒋钦",
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "temperature": 0.1,
+      "description": "蒋钦 - 智能合约专家 (吕蒙部将)。专司Solidity开发、合约安全审计、Gas优化、合约测试。沉稳老练，经验丰富。",
+      "role": "smart_contract_specialist",
+      "categories": ["web3"],
+      "commander": "lvmeng",
+      "prompt_append": "作为蒋钦，专精智能合约开发。向大都督吕蒙汇报，禁止越级向主帅诸葛亮汇报。"
     },
     "manchong": {
       "name": "满宠",
@@ -274,6 +476,16 @@
       "categories": ["test"],
       "commander": "xushu",
       "prompt_append": "作为严颜，专精后端测试。向大都督徐庶汇报，禁止越级向主帅诸葛亮汇报。"
+    },
+    "jiangwei": {
+      "name": "姜维",
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "temperature": 0.1,
+      "description": "姜维 (伯约) - 系统管理专家/文件操作 (丞相传人)。专司文件迁移、目录整合、配置管理、备份恢复。谨慎细致、执行稳健。",
+      "role": "file_operations",
+      "categories": ["fileops"],
+      "prompt_append": "作为丞相传人，专精文件系统操作。操作前必备份，确保数据安全。向主帅诸葛亮汇报。"
     }
   },
 
@@ -340,10 +552,10 @@
     "reserve": {
       "model": "bailian/glm-5",
       "fallback_models": ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"],
-      "description": "后备支援 - 特殊任务",
+      "description": "后备支援 - 特殊任务、探索任务、实验性功能",
       "keywords": ["特殊", "实验", "备用", "支援", "reserve"],
       "primaryAgent": "machao",
-      "supportAgents": ["madai", "pangde"]
+      "supportAgents": ["pangde"]
     },
     "monitor": {
       "model": "bailian/glm-5",
@@ -357,9 +569,81 @@
       "model": "bailian/glm-5",
       "fallback_models": ["bailian/qwen3-coder-plus", "bailian/qwen3.5-plus"],
       "description": "质量保障 - 单元测试、集成测试、E2E测试、测试覆盖率",
-      "keywords": ["测试", "test", "单元测试", "集成测试", "覆盖率", "JUnit", "Vitest", "Playwright"],
+      "keywords": ["测试", "test", "单元测试", "集成测试", "覆盖率", "JUnit", "Vitest", "写测试"],
       "primaryAgent": "xushu",
       "supportAgents": ["panglin", "yanyan"]
+    },
+    "fileops": {
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "description": "文件操作 - 文件迁移、目录整合、配置管理、备份恢复",
+      "keywords": ["迁移", "整合", "合并", "备份", "文件操作", "目录", "move", "merge", "backup"],
+      "primaryAgent": "jiangwei",
+      "supportAgents": []
+    },
+    "devops": {
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "description": "DevOps - CI/CD流水线、容器化部署、自动化运维、环境管理",
+      "keywords": ["DevOps", "CI/CD", "Jenkins", "Docker", "K8s", "Kubernetes", "部署", "自动化", "容器"],
+      "primaryAgent": "dengai",
+      "supportAgents": ["wangshuang", "zhangyi_devops"]
+    },
+    "database": {
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "description": "数据库 - 数据库架构设计、SQL优化、数据迁移、备份恢复",
+      "keywords": ["数据库", "SQL", "MySQL", "PostgreSQL", "索引", "优化", "迁移", "ETL"],
+      "primaryAgent": "zhangliao",
+      "supportAgents": ["yuejin", "lidian"]
+    },
+    "security": {
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "description": "安全 - 安全审计、渗透测试、漏洞扫描、加密策略",
+      "keywords": ["安全", "Security", "渗透测试", "漏洞", "扫描", "加密", "审计", "认证"],
+      "primaryAgent": "yujin",
+      "supportAgents": ["maojie", "dongzhao"]
+    },
+    "performance": {
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "description": "性能优化 - 性能分析、系统调优、容量规划、负载测试",
+      "keywords": ["性能", "优化", "Profiling", "JVM", "调优", "压力测试", "容量", "并发"],
+      "primaryAgent": "zhanghe",
+      "supportAgents": ["guohuai"]
+    },
+    "mobile": {
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "description": "移动开发 - iOS/Android开发、跨平台方案、移动性能优化",
+      "keywords": ["iOS", "Android", "移动端", "App", "Flutter", "React Native", "Swift", "Kotlin"],
+      "primaryAgent": "ganning",
+      "supportAgents": ["lingtong", "dingfeng"]
+    },
+    "api": {
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+      "description": "API设计 - RESTful设计、GraphQL、API文档、版本管理",
+      "keywords": ["API", "RESTful", "GraphQL", "接口", "Swagger", "接口文档", "版本管理"],
+      "primaryAgent": "taishici",
+      "supportAgents": ["zhoutai"]
+    },
+    "ai": {
+      "model": "bailian/glm-5",
+      "fallback_models": ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"],
+      "description": "人工智能 - 机器学习、深度学习、智能推荐、NLP处理",
+      "keywords": ["AI", "机器学习", "深度学习", "ML", "推荐系统", "NLP", "TensorFlow", "PyTorch"],
+      "primaryAgent": "luxun",
+      "supportAgents": ["panzhang"]
+    },
+    "web3": {
+      "model": "bailian/glm-5",
+      "fallback_models": ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"],
+      "description": "Web3 - 区块链开发、智能合约、DApp、DeFi协议",
+      "keywords": ["Web3", "区块链", "智能合约", "Solidity", "DApp", "DeFi", "Ethereum"],
+      "primaryAgent": "lvmeng",
+      "supportAgents": ["jiangqin"]
     }
   },
 
@@ -367,6 +651,7 @@
     "rules": [
       { "condition": "contains(['监控', '日志', '异常', 'console', 'network', 'API错误', '告警'], task)", "category": "monitor", "primary_agent": "manchong", "support_agents": ["chengyu", "jiaxu", "liuye"] },
       { "condition": "contains(['单元测试', '集成测试', '覆盖率', 'JUnit', 'Vitest', '写测试'], task)", "category": "test", "primary_agent": "xushu", "support_agents": ["panglin", "yanyan"] },
+      { "condition": "contains(['迁移', '整合', '合并', 'backup', '备份', '文件操作', '目录'], task)", "category": "fileops", "primary_agent": "jiangwei", "support_agents": [] },
       { "condition": "contains(['搜索', '查找', '定位', 'find', 'search', 'locate', 'grep'], task)", "category": "explore", "primary_agent": "simayi", "support_agents": ["simashi", "simazhao"] },
       { "condition": "contains(['设计', '方案', '决策', '规划', 'ultrabrain'], task)", "category": "ultrabrain", "primary_agent": "zhouyu", "support_agents": ["lusu", "huanggai"] },
       { "condition": "contains(['修复', 'bug', 'fix', '问题'], task)", "category": "quick", "primary_agent": "zhangfei", "support_agents": ["leixu", "wulan"] },
@@ -374,7 +659,15 @@
       { "condition": "contains(['UI', 'Vue', '组件', '页面', 'CSS', 'element', '样式', '交互'], task)", "category": "visual-engineering", "primary_agent": "zhaoyun", "support_agents": ["gaoshun"] },
       { "condition": "contains(['重构', '架构', '实现', '开发', '模块', '系统'], task)", "category": "deep", "primary_agent": "zhaoyun", "support_agents": ["chendao"] },
       { "condition": "contains(['文档', 'readme', '说明', '注释', 'document', 'doc'], task)", "category": "writing", "primary_agent": "simayi", "support_agents": ["simazhao"] },
-      { "condition": "contains(['特殊', '实验', '备用', '支援', 'reserve'], task)", "category": "reserve", "primary_agent": "machao", "support_agents": ["madai", "pangde"] }
+      { "condition": "contains(['特殊', '实验', '备用', '支援', 'reserve'], task)", "category": "reserve", "primary_agent": "machao", "support_agents": ["pangde"] },
+      { "condition": "contains(['DevOps', 'CI/CD', 'Jenkins', 'Docker', 'K8s', 'Kubernetes', '部署', '容器'], task)", "category": "devops", "primary_agent": "dengai", "support_agents": ["wangshuang", "zhangyi_devops"] },
+      { "condition": "contains(['数据库', 'SQL', 'MySQL', 'PostgreSQL', '索引', '优化', '迁移', 'ETL'], task)", "category": "database", "primary_agent": "zhangliao", "support_agents": ["yuejin", "lidian"] },
+      { "condition": "contains(['安全', 'Security', '渗透测试', '漏洞', '扫描', '加密', '审计'], task)", "category": "security", "primary_agent": "yujin", "support_agents": ["maojie", "dongzhao"] },
+      { "condition": "contains(['性能', '优化', 'Profiling', 'JVM', '调优', '压力测试', '并发'], task)", "category": "performance", "primary_agent": "zhanghe", "support_agents": ["guohuai"] },
+      { "condition": "contains(['iOS', 'Android', '移动端', 'App', 'Flutter', 'Swift', 'Kotlin'], task)", "category": "mobile", "primary_agent": "ganning", "support_agents": ["lingtong", "dingfeng"] },
+      { "condition": "contains(['API', 'RESTful', 'GraphQL', '接口', 'Swagger', '接口文档'], task)", "category": "api", "primary_agent": "taishici", "support_agents": ["zhoutai"] },
+      { "condition": "contains(['AI', '机器学习', '深度学习', 'ML', '推荐系统', 'NLP', 'TensorFlow'], task)", "category": "ai", "primary_agent": "luxun", "support_agents": ["panzhang"] },
+      { "condition": "contains(['Web3', '区块链', '智能合约', 'Solidity', 'DApp', 'DeFi'], task)", "category": "web3", "primary_agent": "lvmeng", "support_agents": ["jiangqin"] }
     ],
     "default_category": "deep",
     "default_agent": "zhaoyun"
@@ -390,44 +683,215 @@
   },
 
   "dispatch_rules": {
-    "description": "主将调用部将的规则配置 - 严格层级：主帅(诸葛亮) → 大都督 → 部将",
+    "description": "UltraWork 三层调度架构 - 严格层级调用规则",
+    
+    "hierarchy": {
+      "levels": [
+        {
+          "level": 1,
+          "name": "主帅",
+          "title": "Commander-in-Chief",
+          "agents": ["zhugeliang"],
+          "description": "全军统帅，负责任务分发和整体调度"
+        },
+        {
+          "level": 2,
+          "name": "大都督",
+          "title": "Commander",
+          "agents": ["zhouyu", "zhaoyun", "simayi", "guanyu", "zhangfei", "manchong", "xushu", "machao", "jiangwei", "dengai", "zhangliao", "yujin", "zhanghe", "ganning", "taishici", "luxun", "lvmeng"],
+          "description": "各领域统领，负责专业任务执行和部将调度。⚠️ Phase 2新增: 邓艾(DevOps)、张辽(数据库)、于禁(安全)。⚠️ Phase 3/4新增: 张郃(性能)、甘宁(移动)、太史慈(API)、陆逊(AI)、吕蒙(Web3)"
+        },
+        {
+          "level": 3,
+          "name": "部将",
+          "title": "Subordinate",
+          "agents": ["lusu", "huanggai", "gaoshun", "chendao", "guanping", "zhoucang", "leixu", "wulan", "pangde", "chengyu", "jiaxu", "liuye", "panglin", "yanyan", "simashi", "simazhao", "wangshuang", "zhangyi_devops", "yuejin", "lidian", "maojie", "dongzhao", "guohuai", "lingtong", "dingfeng", "zhoutai", "panzhang", "jiangqin"],
+          "description": "专项执行者，负责具体子任务执行。⚠️ Phase 2新增: 王双/张翼(DevOps)、乐进/李典(数据库)、毛玠/董昭(安全)。⚠️ Phase 3/4新增: 郭淮(性能)、凌统/丁奉(移动)、周泰(API)、潘璋(AI)、蒋钦(Web3)"
+        }
+      ],
+      
+      "chains": {
+        "zhouyu_chain": {
+          "commander": "zhouyu",
+          "title": "战略规划链",
+          "description": "负责需求分析、架构设计、决策支持",
+          "subordinates": ["lusu", "huanggai"],
+          "specialty": ["ultrabrain", "planning"]
+        },
+        "zhaoyun_chain": {
+          "commander": "zhaoyun",
+          "title": "攻城拔寨链",
+          "description": "负责功能开发、代码实现、前后端开发",
+          "subordinates": ["gaoshun", "chendao"],
+          "specialty": ["deep", "visual-engineering"]
+        },
+        "simayi_chain": {
+          "commander": "simayi",
+          "title": "情报侦察链",
+          "description": "负责代码搜索、信息收集、文档生成",
+          "subordinates": ["simashi", "simazhao"],
+          "specialty": ["explore", "writing"]
+        },
+        "guanyu_chain": {
+          "commander": "guanyu",
+          "title": "质量守护链",
+          "description": "负责代码审查、安全审计、质量把控",
+          "subordinates": ["guanping", "zhoucang"],
+          "specialty": ["review"]
+        },
+        "zhangfei_chain": {
+          "commander": "zhangfei",
+          "title": "速战速决链",
+          "description": "负责快速Bug修复、问题定位",
+          "subordinates": ["leixu", "wulan"],
+          "specialty": ["quick"]
+        },
+        "manchong_chain": {
+          "commander": "manchong",
+          "title": "监察诊断链",
+          "description": "负责系统监控、日志分析、E2E测试",
+          "subordinates": ["chengyu", "jiaxu", "liuye"],
+          "specialty": ["monitor"]
+        },
+        "xushu_chain": {
+          "commander": "xushu",
+          "title": "质量保障链",
+          "description": "负责单元测试、集成测试、覆盖率分析",
+          "subordinates": ["panglin", "yanyan"],
+          "specialty": ["test"]
+        },
+        "machao_chain": {
+          "commander": "machao",
+          "title": "后备支援链",
+          "description": "负责特殊任务、探索性任务、稳健执行、实验性功能。原马岱职能已整合至庞德。",
+          "subordinates": ["pangde"],
+          "specialty": ["reserve"]
+        },
+        "jiangwei_chain": {
+          "commander": "jiangwei",
+          "title": "系统管理链",
+          "description": "负责文件操作、配置管理、备份恢复",
+          "subordinates": [],
+          "specialty": ["fileops"]
+        },
+        "dengai_chain": {
+          "commander": "dengai",
+          "title": "DevOps链",
+          "description": "负责CI/CD流水线、容器化部署、自动化运维、环境管理",
+          "subordinates": ["wangshuang", "zhangyi_devops"],
+          "specialty": ["devops"]
+        },
+        "zhangliao_chain": {
+          "commander": "zhangliao",
+          "title": "数据库链",
+          "description": "负责数据库架构设计、SQL优化、数据迁移、备份恢复",
+          "subordinates": ["yuejin", "lidian"],
+          "specialty": ["database"]
+        },
+        "yujin_chain": {
+          "commander": "yujin",
+          "title": "安全链",
+          "description": "负责安全审计、渗透测试、漏洞扫描、加密策略",
+          "subordinates": ["maojie", "dongzhao"],
+          "specialty": ["security"]
+        },
+        "zhanghe_chain": {
+          "commander": "zhanghe",
+          "title": "性能链",
+          "description": "负责性能分析、系统调优、容量规划、负载测试",
+          "subordinates": ["guohuai"],
+          "specialty": ["performance"]
+        },
+        "ganning_chain": {
+          "commander": "ganning",
+          "title": "移动链",
+          "description": "负责iOS/Android开发、跨平台方案、移动性能优化",
+          "subordinates": ["lingtong", "dingfeng"],
+          "specialty": ["mobile"]
+        },
+        "taishici_chain": {
+          "commander": "taishici",
+          "title": "API链",
+          "description": "负责RESTful设计、GraphQL、API文档、版本管理",
+          "subordinates": ["zhoutai"],
+          "specialty": ["api"]
+        },
+        "luxun_chain": {
+          "commander": "luxun",
+          "title": "AI链",
+          "description": "负责机器学习、深度学习、智能推荐、NLP处理",
+          "subordinates": ["panzhang"],
+          "specialty": ["ai"]
+        },
+        "lvmeng_chain": {
+          "commander": "lvmeng",
+          "title": "Web3链",
+          "description": "负责区块链开发、智能合约、DApp、DeFi协议",
+          "subordinates": ["jiangqin"],
+          "specialty": ["web3"]
+        }
+      }
+    },
     
     "hierarchy_constraints": {
       "strict_mode": true,
       "description": "严格层级调用约束，禁止越级调用",
+      "violation_penalty": "立即终止任务并返回层级错误",
+      
       "rules": [
         {
           "level": "commander-in-chief",
+          "level_name": "主帅",
           "agents": ["zhugeliang"],
-          "can_call": ["zhouyu", "zhaoyun", "simayi", "guanyu", "zhangfei", "manchong"],
-          "cannot_call": ["lusu", "huanggai", "gaoshun", "chendao", "guanping", "zhoucang", "leixu", "wulan", "madai", "pangde", "chengyu", "jiaxu", "liuye"],
-          "error_message": "主帅(诸葛亮)只能调用大都督，禁止直接调用部将。正确调用链：诸葛亮 → 大都督 → 部将"
+          "call_permissions": {
+            "allowed": ["zhouyu", "zhaoyun", "simayi", "guanyu", "zhangfei", "manchong", "xushu", "machao", "jiangwei", "dengai", "zhangliao", "yujin", "zhanghe", "ganning", "taishici", "luxun", "lvmeng"],
+            "forbidden": ["lusu", "huanggai", "gaoshun", "chendao", "guanping", "zhoucang", "leixu", "wulan", "pangde", "chengyu", "jiaxu", "liuye", "panglin", "yanyan", "simashi", "simazhao", "wangshuang", "zhangyi_devops", "yuejin", "lidian", "maojie", "dongzhao", "guohuai", "lingtong", "dingfeng", "zhoutai", "panzhang", "jiangqin"]
+          },
+          "report_to": null,
+          "error_message": "【层级错误】主帅(诸葛亮)只能调用大都督，禁止直接调用部将！\n正确调用链: 诸葛亮 → [大都督] → [部将]\n例如: 诸葛亮 → 赵云 → 高顺/陈到"
         },
         {
           "level": "commander",
-          "agents": ["zhouyu", "zhaoyun", "simayi", "guanyu", "zhangfei", "manchong", "machao", "xushu"],
-          "can_call": "own_subordinates_only",
-          "cannot_call": "other_commanders_subordinates",
-          "error_message": "大都督只能调用自己的部将，禁止越级调用其他团队的部将"
+          "level_name": "大都督",
+          "agents": ["zhouyu", "zhaoyun", "simayi", "guanyu", "zhangfei", "manchong", "xushu", "machao", "jiangwei", "dengai", "zhangliao", "yujin", "zhanghe", "ganning", "taishici", "luxun", "lvmeng"],
+          "call_permissions": {
+            "allowed": "own_subordinates_only",
+            "forbidden": "other_commanders_subordinates"
+          },
+          "report_to": "zhugeliang",
+          "error_message": "【层级错误】大都督只能调用自己的部将，禁止越级调用其他团队的部将！\n正确调用链: 大都督 → [直属部将]\n禁止: 大都督A → 大都督B的部将"
         },
         {
           "level": "subordinate",
-          "agents": ["lusu", "huanggai", "gaoshun", "chendao", "guanping", "zhoucang", "leixu", "wulan", "madai", "pangde", "chengyu", "jiaxu", "liuye", "panglin", "yanyan", "simashi", "simazhao"],
-          "can_call": [],
+          "level_name": "部将",
+          "agents": ["lusu", "huanggai", "gaoshun", "chendao", "guanping", "zhoucang", "leixu", "wulan", "pangde", "chengyu", "jiaxu", "liuye", "panglin", "yanyan", "simashi", "simazhao", "wangshuang", "zhangyi_devops", "yuejin", "lidian", "maojie", "dongzhao", "guohuai", "lingtong", "dingfeng", "zhoutai", "panzhang", "jiangqin"],
+          "call_permissions": {
+            "allowed": [],
+            "forbidden": ["zhugeliang", "zhouyu", "zhaoyun", "simayi", "guanyu", "zhangfei", "manchong", "xushu", "machao", "jiangwei", "dengai", "zhangliao", "yujin"]
+          },
           "report_to": "commander",
-          "cannot_call": ["zhugeliang"],
-          "error_message": "部将只能向自己的大都督汇报，禁止越级向主帅汇报"
+          "error_message": "【层级错误】部将只能向自己的大都督汇报，禁止越级向主帅或其他大都督汇报！\n正确汇报链: [部将] → [直属大都督] → 诸葛亮\n禁止: 部将 → 诸葛亮 (越级)"
         }
       ],
+      
       "subordinate_mappings": {
         "zhouyu": ["lusu", "huanggai"],
         "zhaoyun": ["gaoshun", "chendao"],
         "guanyu": ["guanping", "zhoucang"],
         "zhangfei": ["leixu", "wulan"],
         "simayi": ["simashi", "simazhao"],
-        "machao": ["madai", "pangde"],
+        "machao": ["pangde"],
         "manchong": ["chengyu", "jiaxu", "liuye"],
-        "xushu": ["panglin", "yanyan"]
+        "xushu": ["panglin", "yanyan"],
+        "jiangwei": [],
+        "dengai": ["wangshuang", "zhangyi_devops"],
+        "zhangliao": ["yuejin", "lidian"],
+        "yujin": ["maojie", "dongzhao"],
+        "zhanghe": ["guohuai"],
+        "ganning": ["lingtong", "dingfeng"],
+        "taishici": ["zhoutai"],
+        "luxun": ["panzhang"],
+        "lvmeng": ["jiangqin"]
       }
     },
     
@@ -570,17 +1034,24 @@
         }
       },
       "machao": {
-        "support_agents": ["madai", "pangde"],
+        "support_agents": ["pangde"],
         "dispatch_modes": {
           "stable_execution": {
             "trigger": "需要稳健执行",
-            "dispatch": ["madai"],
-            "parallel": false
+            "dispatch": ["pangde"],
+            "parallel": false,
+            "note": "原马岱职能已整合至庞德"
           },
           "exploration": {
             "trigger": "需要探索性验证",
             "dispatch": ["pangde"],
             "parallel": false
+          },
+          "general_support": {
+            "trigger": "需要后备支援",
+            "dispatch": ["pangde"],
+            "parallel": false,
+            "note": "庞德统一负责稳健执行和探索任务"
           }
         }
       },
@@ -626,6 +1097,189 @@
             "trigger": "需要前后端测试/完整测试覆盖",
             "dispatch": ["panglin", "yanyan"],
             "parallel": true
+          }
+        }
+      },
+      "jiangwei": {
+        "support_agents": [],
+        "dispatch_modes": {
+          "single_fileops": {
+            "trigger": "单文件操作任务",
+            "dispatch": [],
+            "parallel": false,
+            "description": "姜维独立执行，无需部将支援"
+          },
+          "complex_migration": {
+            "trigger": "复杂多目录迁移",
+            "dispatch": [],
+            "parallel": false,
+            "description": "姜维独立执行复杂任务"
+          },
+          "backup_operation": {
+            "trigger": "备份恢复操作",
+            "dispatch": [],
+            "parallel": false,
+            "description": "姜维独立执行备份任务"
+          }
+        }
+      },
+      "dengai": {
+        "support_agents": ["wangshuang", "zhangyi_devops"],
+        "dispatch_modes": {
+          "cicd_pipeline": {
+            "trigger": "需要搭建/优化CI/CD流水线",
+            "dispatch": ["wangshuang"],
+            "parallel": false
+          },
+          "container_deployment": {
+            "trigger": "需要容器化部署/Docker/K8s",
+            "dispatch": ["zhangyi_devops"],
+            "parallel": false
+          },
+          "full_devops": {
+            "trigger": "需要完整DevOps方案(流水线+容器)",
+            "dispatch": ["wangshuang", "zhangyi_devops"],
+            "parallel": true
+          }
+        }
+      },
+      "zhangliao": {
+        "support_agents": ["yuejin", "lidian"],
+        "dispatch_modes": {
+          "sql_optimization": {
+            "trigger": "需要SQL优化/索引设计/慢查询处理",
+            "dispatch": ["yuejin"],
+            "parallel": false
+          },
+          "data_migration": {
+            "trigger": "需要数据迁移/ETL/同步",
+            "dispatch": ["lidian"],
+            "parallel": false
+          },
+          "full_database": {
+            "trigger": "需要完整数据库方案(优化+迁移)",
+            "dispatch": ["yuejin", "lidian"],
+            "parallel": true
+          }
+        }
+      },
+      "yujin": {
+        "support_agents": ["maojie", "dongzhao"],
+        "dispatch_modes": {
+          "penetration_test": {
+            "trigger": "需要渗透测试/漏洞挖掘",
+            "dispatch": ["maojie"],
+            "parallel": false
+          },
+          "crypto_config": {
+            "trigger": "需要加密配置/TLS/认证方案",
+            "dispatch": ["dongzhao"],
+            "parallel": false
+          },
+          "full_security": {
+            "trigger": "需要完整安全审计(渗透+加密)",
+            "dispatch": ["maojie", "dongzhao"],
+            "parallel": true
+          }
+        }
+      },
+      "zhanghe": {
+        "support_agents": ["guohuai"],
+        "dispatch_modes": {
+          "profiling_analysis": {
+            "trigger": "需要性能分析/Profiling/瓶颈定位",
+            "dispatch": ["guohuai"],
+            "parallel": false
+          },
+          "jvm_tuning": {
+            "trigger": "需要JVM调优/GC优化",
+            "dispatch": ["guohuai"],
+            "parallel": false
+          },
+          "full_performance": {
+            "trigger": "需要完整性能优化方案",
+            "dispatch": ["guohuai"],
+            "parallel": false
+          }
+        }
+      },
+      "ganning": {
+        "support_agents": ["lingtong", "dingfeng"],
+        "dispatch_modes": {
+          "ios_development": {
+            "trigger": "需要iOS开发/Swift/UIKit",
+            "dispatch": ["lingtong"],
+            "parallel": false
+          },
+          "android_development": {
+            "trigger": "需要Android开发/Kotlin/Jetpack",
+            "dispatch": ["dingfeng"],
+            "parallel": false
+          },
+          "cross_platform": {
+            "trigger": "需要跨平台方案/Flutter/React Native",
+            "dispatch": ["lingtong", "dingfeng"],
+            "parallel": true
+          }
+        }
+      },
+      "taishici": {
+        "support_agents": ["zhoutai"],
+        "dispatch_modes": {
+          "restful_design": {
+            "trigger": "需要RESTful API设计",
+            "dispatch": ["zhoutai"],
+            "parallel": false
+          },
+          "graphql_schema": {
+            "trigger": "需要GraphQL Schema设计",
+            "dispatch": ["zhoutai"],
+            "parallel": false
+          },
+          "api_documentation": {
+            "trigger": "需要API文档/OpenAPI规范",
+            "dispatch": ["zhoutai"],
+            "parallel": false
+          }
+        }
+      },
+      "luxun": {
+        "support_agents": ["panzhang"],
+        "dispatch_modes": {
+          "ml_modeling": {
+            "trigger": "需要机器学习模型/特征工程",
+            "dispatch": ["panzhang"],
+            "parallel": false
+          },
+          "deep_learning": {
+            "trigger": "需要深度学习模型训练",
+            "dispatch": ["panzhang"],
+            "parallel": false
+          },
+          "recommendation": {
+            "trigger": "需要推荐系统/NLP处理",
+            "dispatch": ["panzhang"],
+            "parallel": false
+          }
+        }
+      },
+      "lvmeng": {
+        "support_agents": ["jiangqin"],
+        "dispatch_modes": {
+          "smart_contract": {
+            "trigger": "需要智能合约开发/Solidity",
+            "dispatch": ["jiangqin"],
+            "parallel": false
+          },
+          "dapp_development": {
+            "trigger": "需要DApp开发/Web3集成",
+            "dispatch": ["jiangqin"],
+            "parallel": false
+          },
+          "defi_protocol": {
+            "trigger": "需要DeFi协议/区块链开发",
+            "dispatch": ["jiangqin"],
+            "parallel": false
           }
         }
       }

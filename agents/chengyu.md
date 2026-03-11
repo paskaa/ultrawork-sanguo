@@ -1,4 +1,5 @@
 ---
+name: chengyu
 description: 程昱 (仲德) - 前端监控专家
 mode: subagent
 model: bailian/MiniMax-M2.5

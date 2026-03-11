@@ -1,4 +1,5 @@
 ---
+name: jiaxu
 description: 贾诩 (文和) - 后端监控专家
 mode: subagent
 model: bailian/MiniMax-M2.5

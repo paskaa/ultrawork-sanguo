@@ -127,6 +127,126 @@ const InlineStatusBar = {
   },
 
   /**
+   * Agent 开始任务 (别名方法，兼容插件API)
+   */
+  agentStart(agentId, action) {
+    // 武将ID到名称的映射
+    const agentMap = {
+      'zhugeliang': { name: '诸葛亮', alias: '孔明', model: 'Qwen3.5-Plus' },
+      'zhaoyun': { name: '赵云', alias: '子龙', model: 'Qwen-Coder' },
+      'simayi': { name: '司马懿', alias: '仲达', model: 'Kimi-k2.5' },
+      'zhangfei': { name: '张飞', alias: '翼德', model: 'MiniMax-M2.5' },
+      'guanyu': { name: '关羽', alias: '云长', model: 'Qwen3.5-Plus' },
+      'zhouyu': { name: '周瑜', alias: '公瑾', model: 'GLM-5' },
+      'chendao': { name: '陈到', alias: '叔至', model: 'Kimi-k2.5' },
+      'gaoshun': { name: '高顺', alias: '', model: 'Qwen-Coder' },
+      'huanggai': { name: '黄盖', alias: '公覆', model: 'Gemini-2.5' },
+      'lusu': { name: '鲁肃', alias: '子敬', model: 'Kimi-k2.5' },
+      'manchong': { name: '满宠', alias: '伯宁', model: 'GLM-5' },
+      'zhoucang': { name: '周仓', alias: '', model: 'Qwen-Coder' },
+      'wulan': { name: '吴兰', alias: '', model: 'Qwen-Coder' },
+      'leixu': { name: '雷绪', alias: '', model: 'MiniMax-M2.5' },
+      'pangde': { name: '庞德', alias: '令明', model: 'MiniMax-M2.5' },
+      'madai': { name: '马岱', alias: '', model: 'Qwen-Coder' },
+      'guanping': { name: '关平', alias: '', model: 'Qwen-Coder' },
+      'simashi': { name: '司马师', alias: '子元', model: 'Kimi-k2.5' },
+      'simazhao': { name: '司马昭', alias: '子上', model: 'Kimi-k2.5' },
+      'machao': { name: '马超', alias: '孟起', model: 'MiniMax-M2.5' }
+    };
+
+    const agentInfo = agentMap[agentId];
+    if (!agentInfo) return this;
+
+    const existingAgent = this.state.agents.find(a => a.name === agentInfo.name);
+    if (existingAgent) {
+      existingAgent.status = 'RUN';
+      existingAgent.task = action;
+    } else {
+      this.addAgent(agentInfo.name, agentInfo.alias, agentInfo.model, 'RUN', action);
+    }
+    return this;
+  },
+
+  /**
+   * Agent 更新进度
+   */
+  agentProgress(agentId, progress, message) {
+    const agentMap = {
+      'zhugeliang': '诸葛亮',
+      'zhaoyun': '赵云',
+      'simayi': '司马懿',
+      'zhangfei': '张飞',
+      'guanyu': '关羽',
+      'zhouyu': '周瑜',
+      'chendao': '陈到',
+      'gaoshun': '高顺',
+      'huanggai': '黄盖',
+      'lusu': '鲁肃',
+      'manchong': '满宠',
+      'zhoucang': '周仓',
+      'wulan': '吴兰',
+      'leixu': '雷绪',
+      'pangde': '庞德',
+      'madai': '马岱',
+      'guanping': '关平',
+      'simashi': '司马师',
+      'simazhao': '司马昭',
+      'machao': '马超'
+    };
+
+    const agentName = agentMap[agentId];
+    if (!agentName) return this;
+
+    const agent = this.state.agents.find(a => a.name === agentName);
+    if (agent) {
+      if (message) {
+        agent.task = message;
+      }
+      // 这里可以添加进度相关的逻辑
+      this.addLog(`${agentName}: ${message || '进度更新 ' + progress + '%'}`);
+    }
+    return this;
+  },
+
+  /**
+   * Agent 完成任务
+   */
+  agentComplete(agentId, success = true) {
+    const agentMap = {
+      'zhugeliang': '诸葛亮',
+      'zhaoyun': '赵云',
+      'simayi': '司马懿',
+      'zhangfei': '张飞',
+      'guanyu': '关羽',
+      'zhouyu': '周瑜',
+      'chendao': '陈到',
+      'gaoshun': '高顺',
+      'huanggai': '黄盖',
+      'lusu': '鲁肃',
+      'manchong': '满宠',
+      'zhoucang': '周仓',
+      'wulan': '吴兰',
+      'leixu': '雷绪',
+      'pangde': '庞德',
+      'madai': '马岱',
+      'guanping': '关平',
+      'simashi': '司马师',
+      'simazhao': '司马昭',
+      'machao': '马超'
+    };
+
+    const agentName = agentMap[agentId];
+    if (!agentName) return this;
+
+    const agent = this.state.agents.find(a => a.name === agentName);
+    if (agent) {
+      agent.status = success ? 'OK' : 'FAIL';
+      agent.task = success ? '已完成' : '失败';
+    }
+    return this;
+  },
+
+  /**
    * 添加日志
    */
   addLog(message) {

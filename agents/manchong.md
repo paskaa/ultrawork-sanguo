@@ -1,4 +1,5 @@
 ---
+name: manchong
 description: 满宠 (伯宁) - 监察指挥官/观察者统领
 mode: subagent
 model: bailian/glm-5
