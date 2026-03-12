@@ -649,6 +649,22 @@
 
   "task_routing": {
     "rules": [
+      { "condition": "subagent_type == 'explore'", "category": "explore", "primary_agent": "simayi", "support_agents": ["simashi", "simazhao"], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'code-reviewer'", "category": "review", "primary_agent": "guanyu", "support_agents": ["guanping", "zhoucang"], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'tdd-guide'", "category": "test", "primary_agent": "xushu", "support_agents": ["panglin", "yanyan"], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'security-reviewer'", "category": "security", "primary_agent": "yujin", "support_agents": ["maojie", "dongzhao"], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'refactor-cleaner'", "category": "explore", "primary_agent": "simayi", "support_agents": ["simashi", "simazhao"], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'python-reviewer'", "category": "deep", "primary_agent": "chendao", "support_agents": [], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'go-reviewer'", "category": "deep", "primary_agent": "chendao", "support_agents": [], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'go-build-resolver'", "category": "quick", "primary_agent": "chendao", "support_agents": [], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'e2e-runner'", "category": "monitor", "primary_agent": "liuye", "support_agents": [], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'doc-updater'", "category": "writing", "primary_agent": "simazhao", "support_agents": [], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'database-reviewer'", "category": "database", "primary_agent": "zhangliao", "support_agents": ["yuejin", "lidian"], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'build-error-resolver'", "category": "quick", "primary_agent": "zhangfei", "support_agents": ["leixu", "wulan"], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'loop-operator'", "category": "ultrabrain", "primary_agent": "zhugeliang", "support_agents": [], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'harness-optimizer'", "category": "ultrabrain", "primary_agent": "zhouyu", "support_agents": ["lusu", "huanggai"], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'planner'", "category": "ultrabrain", "primary_agent": "zhouyu", "support_agents": ["lusu", "huanggai"], "note": "OpenCode内置类型映射" },
+      { "condition": "subagent_type == 'architect'", "category": "ultrabrain", "primary_agent": "zhouyu", "support_agents": ["lusu", "huanggai"], "note": "OpenCode内置类型映射" },
       { "condition": "contains(['监控', '日志', '异常', 'console', 'network', 'API错误', '告警'], task)", "category": "monitor", "primary_agent": "manchong", "support_agents": ["chengyu", "jiaxu", "liuye"] },
       { "condition": "contains(['单元测试', '集成测试', '覆盖率', 'JUnit', 'Vitest', '写测试'], task)", "category": "test", "primary_agent": "xushu", "support_agents": ["panglin", "yanyan"] },
       { "condition": "contains(['迁移', '整合', '合并', 'backup', '备份', '文件操作', '目录'], task)", "category": "fileops", "primary_agent": "jiangwei", "support_agents": [] },

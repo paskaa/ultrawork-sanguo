@@ -181,6 +181,43 @@ function broadcastToSession(sessionId, data) {
   }
 }
 
+// 获取武将专业领域
+function getAgentExpertise(agentId) {
+  const expertise = {
+    // 前端
+    gaoshun: ['frontend', 'visual-engineering'],
+    panglin: ['frontend', 'testing'],
+    // 后端
+    chendao: ['backend', 'api'],
+    yanyan: ['backend', 'testing'],
+    // 审查
+    guanyu: ['review', 'quality'],
+    guanping: ['review', 'code-review'],
+    // DevOps
+    guanxing: ['devops', 'deployment'],
+    dengai: ['devops', 'cicd'],
+    // 安全
+    yujin: ['security', 'audit'],
+    guansuo: ['security', 'scanning'],
+    zhoucang: ['security', 'check'],
+    // 数据库
+    zhangliao: ['database', 'sql'],
+    yuejin: ['database', 'optimization'],
+    lidian: ['database', 'migration'],
+    // 快速修复
+    zhangfei: ['quickfix', 'bugfix'],
+    leixu: ['quickfix', 'locate'],
+    wulan: ['quickfix', 'instant-fix'],
+    // 执行
+    zhaoyun: ['execution', 'deep'],
+    zhouyu: ['planning', 'architecture'],
+    simayi: ['exploration', 'analysis'],
+    xushu: ['testing', 'quality']
+  };
+  
+  return expertise[agentId] || ['general'];
+}
+
 // ═══════════════════════════════════════════════════════════════
 // WebSocket 客户端管理
 // ═══════════════════════════════════════════════════════════════
@@ -507,6 +544,224 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // ═══════════════════════════════════════════════════════════════
+  // 智能调度 API - 新增
+  // ═══════════════════════════════════════════════════════════════
+
+  // API: 获取智能路由方案
+  if (pathname === '/api/router/plan' && req.method === 'POST') {
+    parseBody(req, (body) => {
+      const task = body.task || '';
+      const category = body.category || 'deep';
+      
+      // 计算负载
+      const agents = Object.values(state.agents);
+      const activeCount = agents.filter(a => a.status === 'running').length;
+      const loadFactor = agents.length > 0 ? activeCount / agents.length : 0;
+      
+      // 确定负载等级
+      let loadLevel = 'normal';
+      if (loadFactor < 0.3) loadLevel = 'idle';
+      else if (loadFactor < 0.6) loadLevel = 'normal';
+      else if (loadFactor < 0.8) loadLevel = 'heavy';
+      else loadLevel = 'overloaded';
+      
+      // 根据负载选择策略
+      const strategies = {
+        idle: {
+          name: 'full-team',
+          maxParallel: 5,
+          primary: 'zhugeliang',
+          secondary: ['zhaoyun', 'simayi'],
+          support: ['gaoshun', 'chendao']
+        },
+        normal: {
+          name: 'standard',
+          maxParallel: 3,
+          primary: 'zhugeliang',
+          secondary: ['zhaoyun'],
+          support: ['gaoshun']
+        },
+        heavy: {
+          name: 'reduced',
+          maxParallel: 2,
+          primary: 'zhugeliang',
+          secondary: ['zhaoyun'],
+          support: []
+        },
+        overloaded: {
+          name: 'minimal',
+          maxParallel: 1,
+          primary: null,
+          secondary: ['zhangfei'],
+          support: []
+        }
+      };
+      
+      const strategy = strategies[loadLevel];
+      
+      // 根据任务类别调整
+      const taskCategories = {
+        bugfix: { name: '快速修复', icon: '🐛', time: '5-15分钟' },
+        feature: { name: '功能开发', icon: '✨', time: '30-60分钟' },
+        refactor: { name: '代码重构', icon: '🔄', time: '45-90分钟' },
+        review: { name: '代码审查', icon: '👁️', time: '15-30分钟' },
+        performance: { name: '性能优化', icon: '⚡', time: '30-60分钟' },
+        architecture: { name: '架构设计', icon: '🏗️', time: '60-120分钟' },
+        deep: { name: '深度开发', icon: '⚔️', time: '30-90分钟' },
+        quick: { name: '快速修复', icon: '🔥', time: '5-15分钟' }
+      };
+      
+      const taskInfo = taskCategories[category] || taskCategories.deep;
+      
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        success: true,
+        sessionId,
+        loadFactor,
+        loadLevel,
+        task: {
+          description: task,
+          category,
+          ...taskInfo
+        },
+        strategy: {
+          ...strategy,
+          reason: `Session ${loadLevel === 'idle' ? '空闲' : loadLevel === 'normal' ? '负载正常' : loadLevel === 'heavy' ? '负载较高' : '过载'}，启动${loadLevel === 'idle' ? '完整' : loadLevel === 'overloaded' ? '精简' : '标准'}工作流`
+        },
+        estimatedTime: taskInfo.time,
+        timestamp: Date.now()
+      }));
+    });
+    return;
+  }
+
+  // API: 获取决策矩阵
+  if (pathname === '/api/decision/matrix' && req.method === 'GET') {
+    // 计算当前负载
+    const agents = Object.values(state.agents);
+    const activeCount = agents.filter(a => a.status === 'running').length;
+    const loadFactor = agents.length > 0 ? activeCount / agents.length : 0;
+    
+    // 确定负载等级
+    let loadLevel = 'normal';
+    if (loadFactor < 0.3) loadLevel = 'idle';
+    else if (loadFactor < 0.6) loadLevel = 'normal';
+    else if (loadFactor < 0.8) loadLevel = 'heavy';
+    else loadLevel = 'overloaded';
+    
+    // 获取空闲武将
+    const idleAgents = agents.filter(a => a.status === 'idle');
+    
+    // 分类推荐
+    const recommendations = {
+      frontend: idleAgents.filter(a => ['gaoshun', 'panglin'].includes(a.id)),
+      backend: idleAgents.filter(a => ['chendao', 'yanyan'].includes(a.id)),
+      review: idleAgents.filter(a => ['guanyu', 'guanping'].includes(a.id)),
+      security: idleAgents.filter(a => ['yujin', 'guansuo', 'zhoucang'].includes(a.id)),
+      database: idleAgents.filter(a => ['zhangliao', 'yuejin', 'lidian'].includes(a.id)),
+      quickfix: idleAgents.filter(a => ['zhangfei', 'leixu', 'wulan'].includes(a.id))
+    };
+    
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      success: true,
+      sessionId,
+      loadFactor,
+      loadLevel,
+      activeCount,
+      idleCount: idleAgents.length,
+      recommendations,
+      strategies: {
+        idle: { name: '全阵容模式', maxParallel: 5, icon: '🏰' },
+        normal: { name: '标准模式', maxParallel: 3, icon: '⚔️' },
+        heavy: { name: '精简模式', maxParallel: 2, icon: '🔥' },
+        overloaded: { name: '紧急模式', maxParallel: 1, icon: '⚡' }
+      },
+      currentStrategy: loadLevel,
+      timestamp: Date.now()
+    }));
+    return;
+  }
+
+  // API: 获取智能推荐
+  if (pathname === '/api/recommendations' && req.method === 'GET') {
+    // 计算负载
+    const agents = Object.values(state.agents);
+    const activeCount = agents.filter(a => a.status === 'running').length;
+    const loadFactor = agents.length > 0 ? activeCount / agents.length : 0;
+    
+    // 生成推荐
+    const recommendations = [];
+    
+    if (loadFactor > 0.8) {
+      recommendations.push({
+        type: 'urgent',
+        icon: '⚡',
+        title: 'Session 过载',
+        description: '当前负载过高，建议仅执行快速修复任务',
+        action: 'throttle',
+        suggestedAgents: ['zhangfei', 'leixu', 'wulan'].filter(id => 
+          agents.find(a => a.id === id)?.status === 'idle'
+        )
+      });
+    } else if (loadFactor > 0.6) {
+      recommendations.push({
+        type: 'warning',
+        icon: '🔥',
+        title: '负载较高',
+        description: '建议精简配置，最多使用 2-3 位武将',
+        action: 'reduce',
+        suggestedAgents: agents.filter(a => a.status === 'idle').slice(0, 2).map(a => a.id)
+      });
+    } else {
+      // 正常推荐
+      const idleAgents = agents.filter(a => a.status === 'idle');
+      
+      if (idleAgents.length >= 3) {
+        recommendations.push({
+          type: 'optimal',
+          icon: '✅',
+          title: '推荐配置',
+          description: 'Session 状态良好，可启动标准工作流',
+          action: 'standard',
+          suggestedAgents: ['zhugeliang', 'zhaoyun', 'gaoshun'].filter(id =>
+            agents.find(a => a.id === id)?.status === 'idle'
+          )
+        });
+      }
+    }
+    
+    // 添加空闲武将列表
+    const idleAgents = agents.filter(a => a.status === 'idle');
+    if (idleAgents.length > 0) {
+      recommendations.push({
+        type: 'info',
+        icon: '🟢',
+        title: '可用武将',
+        description: `当前有 ${idleAgents.length} 位武将空闲`,
+        action: 'none',
+        agents: idleAgents.map(a => ({
+          id: a.id,
+          name: a.name,
+          role: a.role,
+          expertise: getAgentExpertise(a.id)
+        }))
+      });
+    }
+    
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      success: true,
+      sessionId,
+      loadFactor,
+      activeCount,
+      recommendations,
+      timestamp: Date.now()
+    }));
+    return;
+  }
+
   // 首页 - Web面板
   if (pathname === '/' || pathname === '/index.html') {
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
@@ -521,6 +776,16 @@ const server = http.createServer((req, res) => {
     const testPage = fs.readFileSync(path.join(__dirname, 'websocket-test.html'), 'utf8');
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(testPage);
+    return;
+  }
+  
+  // 诊断页面
+  if (pathname === '/diagnose') {
+    const fs = require('fs');
+    const path = require('path');
+    const diagnosePage = fs.readFileSync(path.join(__dirname, 'diagnose.html'), 'utf8');
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(diagnosePage);
     return;
   }
 
@@ -541,8 +806,11 @@ server.on('upgrade', (request, socket, head) => {
 });
 
 function handleWebSocket(req, socket, sessionId) {
+  console.log(`[WebSocket] 新连接: ${sessionId}`);
+  
   const key = req.headers['sec-websocket-key'];
   if (!key) {
+    console.log('[WebSocket] 错误: 缺少 sec-websocket-key');
     socket.destroy();
     return;
   }
@@ -560,7 +828,14 @@ function handleWebSocket(req, socket, sessionId) {
     ''
   ].join('\r\n');
   
-  socket.write(response);
+  try {
+    socket.write(response);
+    console.log('[WebSocket] 握手成功');
+  } catch (e) {
+    console.error('[WebSocket] 握手失败:', e.message);
+    socket.destroy();
+    return;
+  }
   
   // 获取或创建 session
   const state = getSession(sessionId);
@@ -577,29 +852,59 @@ function handleWebSocket(req, socket, sessionId) {
   wsClients.add(socket);
   
   // 发送初始状态
-  sendWebSocketFrame(socket, JSON.stringify({
-    type: 'init',
-    sessionId,
-    state
-  }));
+  try {
+    sendWebSocketFrame(socket, JSON.stringify({
+      type: 'init',
+      sessionId,
+      state
+    }));
+    console.log('[WebSocket] 初始状态已发送');
+  } catch (e) {
+    console.error('[WebSocket] 发送初始状态失败:', e.message);
+  }
+  
+  // 心跳保持连接
+  const heartbeat = setInterval(() => {
+    try {
+      if (!socket.destroyed) {
+        // 发送 ping 帧 (0x89)
+        const pingFrame = Buffer.from([0x89, 0x00]);
+        socket.write(pingFrame);
+      } else {
+        clearInterval(heartbeat);
+      }
+    } catch (e) {
+      clearInterval(heartbeat);
+    }
+  }, 30000); // 30秒心跳
   
   socket.on('data', (data) => {
-    const message = parseWebSocketFrame(data);
-    if (message) {
-      console.log('[WebSocket] 收到:', message);
+    try {
+      const message = parseWebSocketFrame(data);
+      if (message) {
+        console.log('[WebSocket] 收到:', message);
+      }
+    } catch (e) {
+      console.error('[WebSocket] 处理数据错误:', e.message);
     }
   });
   
-  socket.on('close', () => {
+  socket.on('close', (hadError) => {
+    clearInterval(heartbeat);
+    console.log(`[WebSocket] 连接关闭: ${sessionId}, 错误: ${hadError}`);
     if (connections) {
       connections.delete(socket);
     }
+    wsClients.delete(socket);
   });
   
-  socket.on('error', () => {
+  socket.on('error', (err) => {
+    clearInterval(heartbeat);
+    console.error(`[WebSocket] 错误: ${sessionId}`, err.message);
     if (connections) {
       connections.delete(socket);
     }
+    wsClients.delete(socket);
   });
 }
 
@@ -1941,33 +2246,6 @@ function generateWebPanel(currentSessionId, port) {
         
         // 每3秒检查一次触发
         setInterval(checkTriggers, 3000);
-            if (sessionId === currentSessionId) return;
-            
-            currentSessionId = sessionId;
-            
-            // 显示切换提示
-            showToast(\`正在切换到 Session: \${sessionId}...\`, 'info');
-            
-            // 更新 URL
-            const url = new URL(window.location);
-            url.searchParams.set('session', sessionId);
-            window.history.pushState({}, '', url);
-            
-            // 重新连接 WebSocket
-            if (ws) {
-                ws.close();
-            }
-            connectWebSocket();
-            
-            // 刷新状态
-            loadStatus();
-            loadSessions();
-            
-            // 更新页面标题
-            document.title = \`🏰 UltraWork 三国军团 - Session \${sessionId}\`;
-            
-            showToast(\`已切换到 Session: \${sessionId}\`, 'success');
-        }
         
         // Toast 提示
         function showToast(message, type = 'info') {
@@ -2050,23 +2328,46 @@ function generateWebPanel(currentSessionId, port) {
             wsStatus.className = 'ws-status ws-disconnected';
             wsStatus.innerHTML = '<span>🔄</span> 连接中...';
             
-            ws = new WebSocket(getWebSocketUrl());
-            
-            ws.onopen = () => {
-                wsStatus.className = 'ws-status ws-connected';
-                wsStatus.innerHTML = '<span>🟢</span> 实时连接';
-            };
-            
-            ws.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                handleMessage(data);
-            };
-            
-            ws.onclose = () => {
+            try {
+                const url = getWebSocketUrl();
+                console.log('[WebSocket] 正在连接:', url);
+                ws = new WebSocket(url);
+                
+                ws.onopen = () => {
+                    console.log('[WebSocket] 连接成功');
+                    wsStatus.className = 'ws-status ws-connected';
+                    wsStatus.innerHTML = '<span>🟢</span> 实时连接';
+                };
+                
+                ws.onmessage = (event) => {
+                    console.log('[WebSocket] 收到消息:', event.data.substring(0, 100));
+                    try {
+                        const data = JSON.parse(event.data);
+                        handleMessage(data);
+                    } catch (e) {
+                        console.error('[WebSocket] 解析消息失败:', e);
+                    }
+                };
+                
+                ws.onerror = (error) => {
+                    console.error('[WebSocket] 错误:', error);
+                    wsStatus.className = 'ws-status ws-disconnected';
+                    wsStatus.innerHTML = '<span>❌</span> 连接错误';
+                };
+                
+                ws.onclose = (event) => {
+                    console.log('[WebSocket] 连接关闭:', event.code, event.reason);
+                    wsStatus.className = 'ws-status ws-disconnected';
+                    wsStatus.innerHTML = '<span>🔴</span> 已断开';
+                    // 3秒后重连
+                    setTimeout(connectWebSocket, 3000);
+                };
+            } catch (e) {
+                console.error('[WebSocket] 创建连接失败:', e);
                 wsStatus.className = 'ws-status ws-disconnected';
-                wsStatus.innerHTML = '<span>🔴</span> 已断开';
+                wsStatus.innerHTML = '<span>🔴</span> 连接失败';
                 setTimeout(connectWebSocket, 3000);
-            };
+            }
         }
         
         function handleMessage(data) {
@@ -2341,15 +2642,22 @@ server.listen(PORT, () => {
   console.log('  4. 在"📊 Session 分配总览"查看所有 session 的活跃将领分布');
   console.log('');
   console.log('🔗 API 端点:');
-  console.log('  GET  /api/sessions        - 获取所有 sessions');
-  console.log('  GET  /api/sessions/recent - 获取最近5个活跃 sessions');
-  console.log('  POST /api/sessions        - 创建新 session (支持 name 字段)');
-  console.log('  DELETE /api/sessions/:id  - 删除 session');
-  console.log('  GET  /api/status?session=x- 获取指定 session 状态');
+  console.log('  GET  /api/sessions              - 获取所有 sessions');
+  console.log('  GET  /api/sessions/recent       - 获取最近5个活跃 sessions');
+  console.log('  POST /api/sessions              - 创建新 session (支持 name 字段)');
+  console.log('  DELETE /api/sessions/:id        - 删除 session');
+  console.log('  GET  /api/status?session=x      - 获取指定 session 状态');
+  console.log('');
+  console.log('🤖 智能调度 API:');
+  console.log('  POST /api/router/plan           - 获取智能路由方案');
+  console.log('  GET  /api/decision/matrix       - 获取决策矩阵');
+  console.log('  GET  /api/recommendations       - 获取智能推荐');
   console.log('');
   console.log('✨ 新增功能:');
   console.log('  - Session 可自定义名称');
   console.log('  - 显示最近5个活跃 Session');
   console.log('  - 创建 Session 时弹出命名对话框');
+  console.log('  - 智能负载均衡和武将推荐');
+  console.log('  - 基于 Session 状态的自动调度');
   console.log('');
 });

@@ -1,6 +1,7 @@
 import { tool } from "@opencode-ai/plugin/tool";
 import { loadConfig } from "./config/loader.js";
 import { routeTask, routeByAgent } from "./agents/router.js";
+import { routeBySubagentType, isBuiltInSubagentType, printRoutingTable } from "./agents/subagent-router.js";
 import { executeSyncTask, parseModelString } from "./executor/index.js";
 import { injectServerAuthIntoClient } from "./auth.js";
 const configCache = new Map();
@@ -98,6 +99,7 @@ ${categoryList}
             prompt: tool.schema.string().describe("详细的任务内容 (可用 @将领名 指定将领)"),
             category: tool.schema.string().optional().describe("任务类别 (可选)"),
             agent: tool.schema.string().optional().describe("将领名称 (可选)"),
+            subagent_type: tool.schema.string().optional().describe("OpenCode内置类型 (可选, 如: explore, code-reviewer, tdd-guide等)"),
         },
         async execute(args, toolCtx) {
             // 在 tool 执行时设置认证
@@ -127,7 +129,9 @@ ${categoryList}
             let agentName;
             let categoryName;
             let model;
-            // 优先级: agent 参数 > @武将名 > category 参数 > 自动检测
+            let isBuiltInType = false;
+            
+            // 优先级: agent 参数 > @武将名 > subagent_type 参数 > category 参数 > 自动检测
             if (args.agent) {
                 const routing = routeByAgent(cfg, args.agent);
                 if (routing) {
@@ -155,6 +159,23 @@ ${categoryList}
                 }
                 console.log(`[UltraWork-SanGuo] 从 prompt 解析到将领: @${agentFromPrompt}`);
             }
+            else if (args.subagent_type) {
+                // 处理 OpenCode 内置类型映射
+                const subagentRouting = routeBySubagentType(args.subagent_type, cfg, ctx.directory);
+                if (subagentRouting) {
+                    agentName = subagentRouting.primaryAgent;
+                    categoryName = subagentRouting.category;
+                    model = subagentRouting.model;
+                    isBuiltInType = true;
+                    console.log(`[UltraWork-SanGuo] OpenCode内置类型映射: ${args.subagent_type} → ${agentName}`);
+                } else {
+                    console.log(`[UltraWork-SanGuo] 未知内置类型: ${args.subagent_type}，使用自动检测`);
+                    const routing = routeTask(cfg, args.description);
+                    agentName = routing.primaryAgent;
+                    categoryName = routing.category;
+                    model = routing.model;
+                }
+            }
             else if (args.category) {
                 categoryName = args.category;
                 const categoryConfig = categoriesCfg[categoryName];
@@ -172,6 +193,9 @@ ${categoryList}
             console.log(`  类别: ${categoryName ?? "auto"}`);
             console.log(`  将领: ${agentName}`);
             console.log(`  模型: ${model ?? "default"}`);
+            if (isBuiltInType) {
+                console.log(`  类型: OpenCode内置 (${args.subagent_type})`);
+            }
             // 解析模型
             const categoryModel = model ? parseModelString(model) : undefined;
             // 映射到 OpenCode subagent_type

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket 诊断工具</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #1a1a2e; color: #e0e0e0; }
+        .log { margin: 5px 0; padding: 10px; border-radius: 4px; }
+        .info { background: rgba(0,212,255,0.2); }
+        .error { background: rgba(239,68,68,0.2); color: #f87171; }
+        .success { background: rgba(16,185,129,0.2); color: #10b981; }
+        button { padding: 10px 20px; margin: 10px 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>🔧 WebSocket 诊断工具</h2>
+    <div id="logs"></div>
+    <button onclick="test1()">测试 1: 基本连接</button>
+    <button onclick="test2()">测试 2: 带 session</button>
+    <button onclick="test3()">测试 3: 检查网络</button>
+    <button onclick="clearLogs()">清空日志</button>
+    
+    <script>
+        function log(msg, type='info') {
+            const div = document.createElement('div');
+            div.className = `log ${type}`;
+            div.innerHTML = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            document.getElementById('logs').appendChild(div);
+        }
+        
+        function clearLogs() {
+            document.getElementById('logs').innerHTML = '';
+        }
+        
+        // 测试 1: 基本 WebSocket 连接
+        function test1() {
+            log('测试 1: 基本 WebSocket 连接', 'info');
+            try {
+                const ws = new WebSocket('ws://localhost:3459/ws');
+                
+                ws.onopen = () => {
+                    log('✅ 连接成功 (不带 session)', 'success');
+                    ws.close();
+                };
+                
+                ws.onerror = (e) => {
+                    log(`❌ 错误: ${e.type}`, 'error');
+                };
+                
+                ws.onclose = (e) => {
+                    log(`关闭: code=${e.code}, reason=${e.reason || '无'}, wasClean=${e.wasClean}`, 
+                        e.wasClean ? 'info' : 'error');
+                };
+                
+                setTimeout(() => {
+                    if (ws.readyState !== WebSocket.OPEN) {
+                        log('⏱️ 连接超时 (5秒)', 'error');
+                        ws.close();
+                    }
+                }, 5000);
+                
+            } catch (e) {
+                log(`❌ 异常: ${e.message}`, 'error');
+            }
+        }
+        
+        // 测试 2: 带 session 参数
+        function test2() {
+            log('测试 2: 带 session 参数', 'info');
+            try {
+                const ws = new WebSocket('ws://localhost:3459/ws?session=default');
+                
+                ws.onopen = () => {
+                    log('✅ 连接成功 (带 session)', 'success');
+                };
+                
+                ws.onmessage = (e) => {
+                    log(`收到消息: ${e.data.substring(0, 100)}...`, 'success');
+                    ws.close();
+                };
+                
+                ws.onerror = (e) => {
+                    log(`❌ 错误: ${e.type}`, 'error');
+                    console.error('WebSocket error:', e);
+                };
+                
+                ws.onclose = (e) => {
+                    log(`关闭: code=${e.code}, reason=${e.reason || '无'}`, 
+                        e.code === 1000 ? 'info' : 'error');
+                };
+                
+            } catch (e) {
+                log(`❌ 异常: ${e.message}`, 'error');
+            }
+        }
+        
+        // 测试 3: 检查网络
+        async function test3() {
+            log('测试 3: 检查网络连接', 'info');
+            
+            try {
+                const response = await fetch('http://localhost:3459/api/sessions');
+                const data = await response.json();
+                log(`✅ HTTP API 正常: ${data.sessions.length} 个 sessions`, 'success');
+            } catch (e) {
+                log(`❌ HTTP 请求失败: ${e.message}`, 'error');
+            }
+            
+            // 检查 WebSocket 支持
+            if ('WebSocket' in window) {
+                log('✅ 浏览器支持 WebSocket', 'success');
+            } else {
+                log('❌ 浏览器不支持 WebSocket', 'error');
+            }
+            
+            // 显示浏览器信息
+            log(`浏览器: ${navigator.userAgent.substring(0, 50)}...`, 'info');
+            log(`当前页面: ${window.location.href}`, 'info');
+        }
+        
+        // 自动运行测试
+        window.onload = () => {
+            log('诊断工具已加载', 'info');
+            test3();
+        };
+    </script>
+</body>
+</html>
