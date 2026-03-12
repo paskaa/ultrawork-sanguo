@@ -2,6 +2,60 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.2] - 2026-03-12 🎯
+
+### 🚀 OpenCode 内置 Subagent 类型映射支持
+
+#### ✨ Added
+
+- **OpenCode 内置类型映射** - 完整支持 OpenCode 内置 subagent 类型路由到三国武将
+  - 新增 16 种内置类型映射规则到 `task_routing.rules`
+  - 新增 `config/subagent-mapping.json` 配置文件
+  - 新增 `docs/subagent-mapping-guide.md` 完整映射指南
+
+- **新增映射类型**:
+  - `explore` → 司马懿 (代码探索)
+  - `code-reviewer` → 关羽 (代码审查)
+  - `tdd-guide` → 徐庶 (测试驱动开发)
+  - `security-reviewer` → 于禁 (安全审计)
+  - `refactor-cleaner` → 司马懿 (重构清理)
+  - `python-reviewer` → 陈到 (Python审查)
+  - `go-reviewer` → 陈到 (Go审查)
+  - `go-build-resolver` → 陈到 (Go构建修复)
+  - `e2e-runner` → 刘晔 (E2E测试)
+  - `doc-updater` → 司马昭 (文档更新)
+  - `database-reviewer` → 张辽 (数据库审查)
+  - `build-error-resolver` → 张飞 (构建错误修复)
+  - `loop-operator` → 诸葛亮 (Agent循环)
+  - `harness-optimizer` → 周瑜 (Harness优化)
+  - `planner` → 周瑜 (任务规划)
+  - `architect` → 周瑜 (架构设计)
+
+- **Subagent Router 模块** - 新增 `src/agents/subagent-router.ts`
+  - `routeBySubagentType()` 函数用于类型到武将的路由
+  - 完整的类型别名支持
+  - 双向查找映射表
+
+- **Session Monitor Hook** - 新增 `scripts/session-monitor-hook.js`
+  - 自动监控 Task 工具调用
+  - 拦截内置类型并路由到三国武将
+
+#### 🔧 Technical
+
+- 新增 `config/subagent-mapping.json` - 集中管理所有类型映射
+- 新增 `scripts/decision-matrix.js` - 智能决策矩阵
+- 新增 `scripts/ultrawork-session-router.js` - 会话路由器
+- 更新 `scripts/state-server-v5.cjs` - 增强状态同步
+- 新增测试脚本 `test-subagent-mapping.js`
+
+#### 📚 Documentation
+
+- 新增 `docs/subagent-mapping-guide.md` - 完整的三层配置指南
+- 新增 `scripts/README-smart-dispatch.md` - 智能调度说明
+- 新增 `scripts/examples-smart-dispatch.js` - 使用示例
+
+---
+
 ## [2.0.1] - 2026-03-12 🎉
 
 ### 🚀 Major Bug Fix Release - SDK v1 API Compatibility

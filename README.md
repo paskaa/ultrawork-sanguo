@@ -163,6 +163,27 @@ ultrawork-sanguo/
 
 ## 📝 Changelog
 
+### v2.0.2 (2026-03-12)
+
+- ✨ **Added**: OpenCode 内置 Subagent 类型映射系统
+  - 16 种内置类型完整映射到三国军团武将
+  - 新增 `config/subagent-mapping.json` 配置文件
+  - 新增 `src/agents/subagent-router.ts` 路由模块
+  - 支持 explore, code-reviewer, tdd-guide, security-reviewer 等类型
+- ✨ **Added**: Web 面板智能调度 API
+  - 新增 `/api/router/plan` 智能路由接口
+  - 实时负载计算和策略选择
+  - 支持 idle/normal/heavy/overloaded 四种负载等级
+  - 自动调整并行度和资源配置
+- ✨ **Added**: 武将专业领域配置
+  - 为每位武将定义专业领域标签
+  - 支持基于专业领域的智能任务分配
+  - 覆盖前端、后端、DevOps、安全、数据库等领域
+- 📚 **Docs**: 新增 `docs/subagent-mapping-guide.md` 完整文档
+  - 包含所有内置类型的映射表
+  - 提供 4 种使用方法的详细说明
+  - 包含故障排除和自定义配置指南
+
 ### v2.0.1 (2026-03-12)
 
 - 🐛 **Fixed**: OpenCode SDK v1 API compatibility issues
