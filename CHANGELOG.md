@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.1] - 2026-03-13 🧪
+
+### ✅ Bug Fixes & Testing
+
+#### 🔧 Fixed
+
+- **重复Fallback模型** - 修复17个Agent的fallback_models重复问题
+  - 移除与主模型重复的fallback项
+  - 确保回退链中模型不重复
+
+- **Categories Keywords** - 恢复19个类别的keywords配置
+  - 修复模型优化脚本导致的keywords清空问题
+  - 恢复路由关键词匹配功能
+
+#### ✨ Added
+
+- **全流程全链条测试脚本** (`test-full-chain.cjs`)
+  - 7个测试阶段覆盖完整链路
+  - 模型配置验证 (46 Agents)
+  - Agent层级结构验证 (16 Commanders + 28 Lieutenants)
+  - 任务路由验证 (19 Categories)
+  - Subagent映射验证 (16 Mappings)
+  - 模型回退链验证 (46 Agents)
+  - 类别配置验证 (17 Categories)
+
+- **辅助修复脚本**
+  - `scripts/fix-duplicate-fallbacks.cjs` - 自动修复重复fallback
+  - `scripts/restore-keywords.cjs` - 自动恢复keywords配置
+
+#### 📊 Test Results
+
+```
+✅ 模型配置: 46/46 Agents使用允许模型 (4个核心模型)
+✅ Agent层级: 主帅1 + 大都督16 + 部将28
+✅ 任务路由: 19个类别配置关键词
+✅ Subagent映射: 16个映射全部正确
+✅ 模型回退链: 46/46 有效
+✅ 类别配置: 17个必需类别存在
+```
+
+---
+
 ## [2.1.0] - 2026-03-13 🎯
 
 ### 🚀 Model Optimization - 精简模型配置
