@@ -17,6 +17,37 @@ A hierarchical multi-agent orchestration system with Three Kingdoms themed comma
 - **Web Panel** - Real-time monitoring with WebSocket support (v5.0)
 - **OpenCode SDK v1 Compatible** - Full API compatibility with OpenCode 1.2.24+
 
+## 🧠 Model Assignment Strategy (v2.1.3)
+
+根据四个模型的长处，为46位武将智能分配：
+
+### 📊 Model Capabilities
+
+| Model | Strengths | Best For | Count |
+|-------|-----------|----------|-------|
+| **GLM-5** | Strategic planning, complex reasoning, architecture design | Commander-in-Chief, Commanders, planning | 9 |
+| **Qwen3.5-plus** | Strongest coding ability, visual understanding | Development, review, technical implementation | 30 |
+| **Kimi-k2.5** | Long context (256K), document processing | Documentation, analysis, information synthesis | 1 |
+| **MiniMax-M2.5** | Fast response, Agent capabilities | Exploration, monitoring, quick tasks | 6 |
+
+### 🎖️ Assignment by Role Type
+
+**Strategic (GLM-5)** - 9 generals
+- ZhugeLiang (Chief), ZhouYu (Strategy), LuSu (Resources), ZhangHe (Performance)
+- LuXun (AI), LuMeng (Web3), ManChong (Monitor), XuShu (Testing), MaChao (Reserve)
+
+**Coding (Qwen3.5-plus)** - 30 generals
+- ZhaoYun (Execution), GuanYu (Review), GaoShun (Frontend), ChenDao (Backend)
+- DengAi (DevOps), ZhangLiao (Database), YuJin (Security), GanNing (Mobile)
+
+**Fast Response (MiniMax-M2.5)** - 6 generals
+- SimaYi (Explore), ZhangFei (QuickFix), ChengYu (Frontend Monitor), JiaXu (Backend Monitor)
+
+**Documentation (Kimi-k2.5)** - 1 general
+- SimaZhao (Information Synthesis)
+
+---
+
 ## 📦 Installation
 
 ```bash
