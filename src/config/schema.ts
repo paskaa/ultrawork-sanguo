@@ -97,8 +97,8 @@ export const DEFAULT_AGENTS: Record<string, AgentConfig> = {
     categories: ["ultrabrain"] 
   },
   zhaoyun: { 
-    model: "bailian/qwen3.5-plus", 
-    fallback_models: ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+    model: "bailian/glm-5", 
+    fallback_models: ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"],
     temperature: 0.1, 
     description: "赵云 (子龙) - 大将/深度执行者", 
     role: "executor", 
@@ -106,15 +106,15 @@ export const DEFAULT_AGENTS: Record<string, AgentConfig> = {
   },
   simayi: { 
     model: "bailian/MiniMax-M2.5", 
-    fallback_models: ["bailian/qwen3.5-plus", "bailian/glm-5"],
+    fallback_models: ["bailian/glm-5", "bailian/qwen3.5-plus"],
     temperature: 0.2, 
     description: "司马懿 (仲达) - 谋士/情报官", 
     role: "explorer", 
     categories: ["explore"] 
   },
   guanyu: { 
-    model: "bailian/qwen3.5-plus", 
-    fallback_models: ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+    model: "bailian/glm-5", 
+    fallback_models: ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"],
     temperature: 0.1, 
     description: "关羽 (云长) - 质量守护者", 
     role: "reviewer", 
@@ -236,16 +236,16 @@ export const DEFAULT_AGENTS: Record<string, AgentConfig> = {
 
 export const DEFAULT_CATEGORIES: Record<string, CategoryConfig> = {
   "visual-engineering": { 
-    model: "bailian/qwen3.5-plus", 
-    fallback_models: ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+    model: "bailian/glm-5", 
+    fallback_models: ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"],
     description: "攻城拔寨 - 前端/UI/UX", 
     keywords: ["UI", "Vue", "前端", "组件", "页面"], 
     primaryAgent: "zhaoyun",
     supportAgents: ["gaoshun", "simayi"]
   },
   "deep": { 
-    model: "bailian/qwen3.5-plus", 
-    fallback_models: ["bailian/glm-5", "bailian/MiniMax-M2.5"],
+    model: "bailian/glm-5", 
+    fallback_models: ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"],
     description: "深入敌阵 - 深度执行", 
     keywords: ["重构", "架构", "实现", "开发"], 
     primaryAgent: "zhaoyun",

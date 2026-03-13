@@ -1,4 +1,4 @@
-# UltraWork - SanGuo Legion v2.1.1
+# UltraWork - SanGuo Legion v2.1.3
 
 > 鞠躬尽瘁，死而后已
 > 将帅齐心，其利断金
@@ -13,7 +13,7 @@ A hierarchical multi-agent orchestration system with Three Kingdoms themed comma
 - **Strict Hierarchy** - ZhugeLiang → Commanders → Lieutenants (no skipping levels)
 - **17 Task Categories** - Auto-routing based on keywords
 - **Multi-Platform** - Qoder, OpenCode, Claude Code, Bailian
-- **Advanced Models** - Support for 4 core models: qwen3.5-plus (vision), kimi-k2.5 (vision), glm-5, MiniMax-M2.5
+- **Advanced Models** - Support for 4 core models: glm-5 (主力/战略), qwen3.5-plus (代码/视觉), kimi-k2.5 (长文本), MiniMax-M2.5 (快速)
 - **Web Panel** - Real-time monitoring with WebSocket support (v5.0)
 - **OpenCode SDK v1 Compatible** - Full API compatibility with OpenCode 1.2.24+
 
