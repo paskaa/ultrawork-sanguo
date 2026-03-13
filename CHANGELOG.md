@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2026-03-13 🎯
+
+### 🚀 Model Optimization - 精简模型配置
+
+#### 🔧 Changed
+
+- **模型精简** - 移除所有 `qwen3-coder-plus` 和 `qwen3-coder-next` 模型
+  - 只保留4个核心模型：
+    1. `bailian/qwen3.5-plus` - 主力模型（支持图片理解）
+    2. `bailian/kimi-k2.5` - 长文本/文档处理（支持图片理解）
+    3. `bailian/glm-5` - 战略规划/复杂推理
+    4. `bailian/MiniMax-M2.5` - 快速响应/探索任务
+  
+- **配置更新** - 更新所有武将和类别的模型配置
+  - 44 处模型引用已替换
+  - 所有 fallback_models 已精简为允许的4个模型
+  - `qwen3-coder-plus` → `qwen3.5-plus`
+  - `qwen3-coder-next` → `qwen3.5-plus`
+
+- **文件更新**:
+  - ✅ `config/ultrawork-sanguo.json` - 37 处替换
+  - ✅ `config/subagent-mapping.json` - 7 处替换
+  - ✅ `src/config/schema.ts` - 4 处替换
+  - ✅ `dist/config/schema.js` - 4 处替换
+  - ✅ `README.md` - 5 处替换
+  - ✅ `CHANGELOG.md` - 16 处替换
+
+#### 📚 Documentation
+
+- 更新模型说明，移除 coder 模型相关描述
+- 简化模型选择指南
+
+#### 🎯 Benefits
+
+- **简化配置** - 从7个模型精简到4个核心模型
+- **降低成本** - 减少模型切换和冗余调用
+- **提高稳定性** - 统一的模型配置，减少兼容性问题
+- **易于维护** - 清晰的模型分工和职责
+
+---
+
 ## [2.0.3] - 2026-03-12 📦
 
 ### 🔄 Patch Release - Version Sync
@@ -205,23 +246,23 @@ All notable changes to this project will be documented in this file.
 ### 🔧 Updated
 
 - ✨ **New Models**: Added support for Bailian Coding Plan models
-  - `qwen3-coder-plus` - Primary model for coding specialists (GaoShun, ChenDao, ChengYu, JiaXu, PangLin, YanYan)
-  - `qwen3-coder-next` - Fast fallback model for coding tasks
+  - `qwen3.5-plus` - Primary model for coding specialists (GaoShun, ChenDao, ChengYu, JiaXu, PangLin, YanYan)
+  - `qwen3.5-plus` - Fast fallback model for coding tasks
   - `qwen3-max-2026-01-23` - Latest Qwen Max variant
   - `glm-4.7` - Updated GLM model support
 
 - 🔧 **Model Config**: Updated fallback model chains for all coding specialists
-  - GaoShun (Frontend): `qwen3-coder-plus` → `qwen3-coder-next` → `qwen3.5-plus` → `glm-5`
-  - ChenDao (Backend): `qwen3-coder-plus` → `qwen3-coder-next` → `qwen3.5-plus` → `glm-5`
-  - ChengYu (Frontend Monitor): `qwen3-coder-plus` → `qwen3-coder-next` → `qwen3.5-plus` → `glm-5`
-  - JiaXu (Backend Monitor): `qwen3-coder-plus` → `qwen3-coder-next` → `qwen3.5-plus` → `glm-5`
-  - PangLin (Frontend Test): `qwen3-coder-plus` → `qwen3-coder-next` → `qwen3.5-plus` → `glm-5`
-  - YanYan (Backend Test): `qwen3-coder-plus` → `qwen3-coder-next` → `qwen3.5-plus` → `glm-5`
-  - LiuYe (E2E Test): Updated to `qwen3-coder-next`
+  - GaoShun (Frontend): `qwen3.5-plus` → `qwen3.5-plus` → `qwen3.5-plus` → `glm-5`
+  - ChenDao (Backend): `qwen3.5-plus` → `qwen3.5-plus` → `qwen3.5-plus` → `glm-5`
+  - ChengYu (Frontend Monitor): `qwen3.5-plus` → `qwen3.5-plus` → `qwen3.5-plus` → `glm-5`
+  - JiaXu (Backend Monitor): `qwen3.5-plus` → `qwen3.5-plus` → `qwen3.5-plus` → `glm-5`
+  - PangLin (Frontend Test): `qwen3.5-plus` → `qwen3.5-plus` → `qwen3.5-plus` → `glm-5`
+  - YanYan (Backend Test): `qwen3.5-plus` → `qwen3.5-plus` → `qwen3.5-plus` → `glm-5`
+  - LiuYe (E2E Test): Updated to `qwen3.5-plus`
 
 ### 📦 Technical
 
-- Updated category model configurations for `visual-engineering` and `deep` to use `qwen3-coder-plus`
+- Updated category model configurations for `visual-engineering` and `deep` to use `qwen3.5-plus`
 - Enhanced model fallback chains for better reliability
 
 ---

@@ -145,16 +145,16 @@ export const DEFAULT_AGENTS: Record<string, AgentConfig> = {
     categories: ["deep"] 
   },
   gaoshun: { 
-    model: "bailian/qwen3-coder-plus", 
-    fallback_models: ["bailian/qwen3.5-plus", "bailian/glm-5"],
+    model: "bailian/qwen3.5-plus", 
+    fallback_models: ["bailian/glm-5", "bailian/MiniMax-M2.5"],
     temperature: 0.1, 
     description: "高顺 - 前端开发专家 (陷阵营统领)", 
     role: "frontend_specialist", 
     categories: ["visual-engineering"] 
   },
   chendao: { 
-    model: "bailian/qwen3-coder-plus", 
-    fallback_models: ["bailian/qwen3.5-plus", "bailian/glm-5"],
+    model: "bailian/qwen3.5-plus", 
+    fallback_models: ["bailian/glm-5", "bailian/MiniMax-M2.5"],
     temperature: 0.1, 
     description: "陈到 - 后端开发专家 (白耳兵统领)", 
     role: "backend_specialist", 
@@ -236,16 +236,16 @@ export const DEFAULT_AGENTS: Record<string, AgentConfig> = {
 
 export const DEFAULT_CATEGORIES: Record<string, CategoryConfig> = {
   "visual-engineering": { 
-    model: "bailian/qwen3-coder-plus", 
-    fallback_models: ["bailian/qwen3.5-plus", "bailian/glm-5"],
+    model: "bailian/qwen3.5-plus", 
+    fallback_models: ["bailian/glm-5", "bailian/MiniMax-M2.5"],
     description: "攻城拔寨 - 前端/UI/UX", 
     keywords: ["UI", "Vue", "前端", "组件", "页面"], 
     primaryAgent: "zhaoyun",
     supportAgents: ["gaoshun", "simayi"]
   },
   "deep": { 
-    model: "bailian/qwen3-coder-plus", 
-    fallback_models: ["bailian/qwen3.5-plus", "bailian/glm-5"],
+    model: "bailian/qwen3.5-plus", 
+    fallback_models: ["bailian/glm-5", "bailian/MiniMax-M2.5"],
     description: "深入敌阵 - 深度执行", 
     keywords: ["重构", "架构", "实现", "开发"], 
     primaryAgent: "zhaoyun",

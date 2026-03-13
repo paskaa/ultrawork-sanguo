@@ -2,152 +2,200 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/dev/assets/oh-my-opencode.schema.json",
   "description": "OpenCode 内置 subagent 类型到 UltraWork 三国军团武将的映射配置",
   "version": "1.0.0",
-  
   "mappings": {
     "explore": {
       "agent": "simayi",
       "category": "explore",
       "description": "代码探索、信息收集 → 司马懿 (仲达) - 谋士/情报官",
       "model": "bailian/MiniMax-M2.5",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/glm-5"]
+      "fallback_models": [
+        "bailian/qwen3.5-plus",
+        "bailian/glm-5"
+      ]
     },
     "code-reviewer": {
       "agent": "guanyu",
       "category": "review",
       "description": "代码审查、质量把关 → 关羽 (云长) - 质量守护者",
       "model": "bailian/qwen3.5-plus",
-      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"]
+      "fallback_models": [
+        "bailian/glm-5",
+        "bailian/MiniMax-M2.5"
+      ]
     },
     "tdd-guide": {
       "agent": "xushu",
       "category": "test",
       "description": "测试驱动开发 → 徐庶 (元直) - 测试专家/大都督",
       "model": "bailian/glm-5",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"]
+      "fallback_models": [
+        "bailian/qwen3.5-plus",
+        "bailian/MiniMax-M2.5"
+      ]
     },
     "security-reviewer": {
       "agent": "yujin",
       "category": "security",
       "description": "安全审计、漏洞扫描 → 于禁 (文则) - 安全大都督",
       "model": "bailian/qwen3.5-plus",
-      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"]
+      "fallback_models": [
+        "bailian/glm-5",
+        "bailian/MiniMax-M2.5"
+      ]
     },
     "refactor-cleaner": {
       "agent": "simayi",
       "category": "explore",
       "description": "死代码清理、重构 → 司马懿 (仲达) - 谋士/情报官",
       "model": "bailian/MiniMax-M2.5",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/glm-5"]
+      "fallback_models": [
+        "bailian/qwen3.5-plus",
+        "bailian/glm-5"
+      ]
     },
     "python-reviewer": {
       "agent": "chendao",
       "category": "deep",
       "description": "Python代码审查 → 陈到 (叔至) - 后端开发专家",
-      "model": "bailian/qwen3-coder-plus",
-      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"]
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": [
+        "bailian/qwen3.5-plus",
+        "bailian/qwen3.5-plus",
+        "bailian/glm-5"
+      ]
     },
     "go-reviewer": {
       "agent": "chendao",
       "category": "deep",
       "description": "Go代码审查 → 陈到 (叔至) - 后端开发专家",
-      "model": "bailian/qwen3-coder-plus",
-      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"]
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": [
+        "bailian/qwen3.5-plus",
+        "bailian/qwen3.5-plus",
+        "bailian/glm-5"
+      ]
     },
     "go-build-resolver": {
       "agent": "chendao",
       "category": "deep",
       "description": "Go构建错误修复 → 陈到 (叔至) - 后端开发专家",
-      "model": "bailian/qwen3-coder-plus",
-      "fallback_models": ["bailian/qwen3-coder-next", "bailian/qwen3.5-plus", "bailian/glm-5"]
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": [
+        "bailian/qwen3.5-plus",
+        "bailian/qwen3.5-plus",
+        "bailian/glm-5"
+      ]
     },
     "e2e-runner": {
       "agent": "liuye",
       "category": "monitor",
       "description": "E2E测试、Playwright → 刘晔 (子扬) - E2E测试专家",
-      "model": "bailian/qwen3-coder-next",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/glm-5"]
+      "model": "bailian/qwen3.5-plus",
+      "fallback_models": [
+        "bailian/qwen3.5-plus",
+        "bailian/glm-5"
+      ]
     },
     "doc-updater": {
       "agent": "simazhao",
       "category": "writing",
       "description": "文档更新、codemap → 司马昭 (子上) - 信息整理专家",
       "model": "bailian/kimi-k2.5",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"]
+      "fallback_models": [
+        "bailian/qwen3.5-plus",
+        "bailian/MiniMax-M2.5"
+      ]
     },
     "database-reviewer": {
       "agent": "zhangliao",
       "category": "database",
       "description": "PostgreSQL审查 → 张辽 (文远) - 数据库大都督",
       "model": "bailian/qwen3.5-plus",
-      "fallback_models": ["bailian/glm-5", "bailian/MiniMax-M2.5"]
+      "fallback_models": [
+        "bailian/glm-5",
+        "bailian/MiniMax-M2.5"
+      ]
     },
     "build-error-resolver": {
       "agent": "zhangfei",
       "category": "quick",
       "description": "构建错误修复 → 张飞 (翼德) - 快速突击者",
       "model": "bailian/MiniMax-M2.5",
-      "fallback_models": ["bailian/glm-5", "bailian/qwen3.5-plus"]
+      "fallback_models": [
+        "bailian/glm-5",
+        "bailian/qwen3.5-plus"
+      ]
     },
     "loop-operator": {
       "agent": "zhugeliang",
       "category": "ultrabrain",
       "description": "Agent循环操作 → 诸葛亮 (孔明) - 主帅/调度器",
       "model": "bailian/glm-5",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"]
+      "fallback_models": [
+        "bailian/qwen3.5-plus",
+        "bailian/MiniMax-M2.5"
+      ]
     },
     "harness-optimizer": {
       "agent": "zhouyu",
       "category": "ultrabrain",
       "description": "Harness优化 → 周瑜 (公瑾) - 大都督/战略规划专家",
       "model": "bailian/glm-5",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"]
+      "fallback_models": [
+        "bailian/qwen3.5-plus",
+        "bailian/MiniMax-M2.5"
+      ]
     },
     "planner": {
       "agent": "zhouyu",
       "category": "ultrabrain",
       "description": "任务规划 → 周瑜 (公瑾) - 大都督/战略规划专家",
       "model": "bailian/glm-5",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"]
+      "fallback_models": [
+        "bailian/qwen3.5-plus",
+        "bailian/MiniMax-M2.5"
+      ]
     },
     "architect": {
       "agent": "zhouyu",
       "category": "ultrabrain",
       "description": "架构设计 → 周瑜 (公瑾) - 大都督/战略规划专家",
       "model": "bailian/glm-5",
-      "fallback_models": ["bailian/qwen3.5-plus", "bailian/MiniMax-M2.5"]
+      "fallback_models": [
+        "bailian/qwen3.5-plus",
+        "bailian/MiniMax-M2.5"
+      ]
     }
   },
-  
   "aliases": {
-    "explore": ["exploration", "search", "find", "locate"],
-    "code-reviewer": ["review", "audit", "check", "quality"],
-    "tdd-guide": ["test", "testing", "tdd"],
-    "security-reviewer": ["security", "vulnerability", "pentest"],
-    "refactor-cleaner": ["cleanup", "refactor", "clean"],
-    "python-reviewer": ["python", "py"],
-    "go-reviewer": ["golang", "go"],
-    "go-build-resolver": ["go-build", "gobuild"],
-    "e2e-runner": ["e2e", "playwright", "end-to-end"],
-    "doc-updater": ["doc", "documentation", "docs"],
-    "database-reviewer": ["db", "sql", "postgres"],
-    "build-error-resolver": ["build", "compile", "typescript"],
-    "loop-operator": ["loop", "operator"],
-    "harness-optimizer": ["harness", "optimize"],
-    "planner": ["plan", "planning"],
-    "architect": ["architecture", "design"]
+    "explore": [],
+    "code-reviewer": [],
+    "tdd-guide": [],
+    "security-reviewer": [],
+    "refactor-cleaner": [],
+    "python-reviewer": [],
+    "go-reviewer": [],
+    "go-build-resolver": [],
+    "e2e-runner": [],
+    "doc-updater": [],
+    "database-reviewer": [],
+    "build-error-resolver": [],
+    "loop-operator": [],
+    "harness-optimizer": [],
+    "planner": [],
+    "architect": []
   },
-  
   "reverse_lookup": {
-    "simayi": ["explore", "refactor-cleaner"],
-    "guanyu": ["code-reviewer"],
-    "xushu": ["tdd-guide"],
-    "yujin": ["security-reviewer"],
-    "chendao": ["python-reviewer", "go-reviewer", "go-build-resolver"],
-    "liuye": ["e2e-runner"],
-    "simazhao": ["doc-updater"],
-    "zhangliao": ["database-reviewer"],
-    "zhangfei": ["build-error-resolver"],
-    "zhugeliang": ["loop-operator"],
-    "zhouyu": ["harness-optimizer", "planner", "architect"]
+    "simayi": [],
+    "guanyu": [],
+    "xushu": [],
+    "yujin": [],
+    "chendao": [],
+    "liuye": [],
+    "simazhao": [],
+    "zhangliao": [],
+    "zhangfei": [],
+    "zhugeliang": [],
+    "zhouyu": []
   }
 }

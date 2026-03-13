@@ -129,7 +129,7 @@ export const DEFAULT_AGENTS = {
         categories: ["deep"]
     },
     gaoshun: {
-        model: "bailian/qwen3-coder-plus",
+        model: "bailian/qwen3.5-plus",
         fallback_models: ["bailian/qwen3.5-plus", "bailian/glm-5"],
         temperature: 0.1,
         description: "高顺 - 前端开发专家 (陷阵营统领)",
@@ -137,7 +137,7 @@ export const DEFAULT_AGENTS = {
         categories: ["visual-engineering"]
     },
     chendao: {
-        model: "bailian/qwen3-coder-plus",
+        model: "bailian/qwen3.5-plus",
         fallback_models: ["bailian/qwen3.5-plus", "bailian/glm-5"],
         temperature: 0.1,
         description: "陈到 - 后端开发专家 (白耳兵统领)",
@@ -219,7 +219,7 @@ export const DEFAULT_AGENTS = {
 };
 export const DEFAULT_CATEGORIES = {
     "visual-engineering": {
-        model: "bailian/qwen3-coder-plus",
+        model: "bailian/qwen3.5-plus",
         fallback_models: ["bailian/qwen3.5-plus", "bailian/glm-5"],
         description: "攻城拔寨 - 前端/UI/UX",
         keywords: ["UI", "Vue", "前端", "组件", "页面"],
@@ -227,7 +227,7 @@ export const DEFAULT_CATEGORIES = {
         supportAgents: ["gaoshun", "simayi"]
     },
     "deep": {
-        model: "bailian/qwen3-coder-plus",
+        model: "bailian/qwen3.5-plus",
         fallback_models: ["bailian/qwen3.5-plus", "bailian/glm-5"],
         description: "深入敌阵 - 深度执行",
         keywords: ["重构", "架构", "实现", "开发"],

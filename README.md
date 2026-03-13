@@ -1,4 +1,4 @@
-# UltraWork - SanGuo Legion v2.0.3
+# UltraWork - SanGuo Legion v2.1.0
 
 > 鞠躬尽瘁，死而后已
 > 将帅齐心，其利断金
@@ -13,7 +13,7 @@ A hierarchical multi-agent orchestration system with Three Kingdoms themed comma
 - **Strict Hierarchy** - ZhugeLiang → Commanders → Lieutenants (no skipping levels)
 - **17 Task Categories** - Auto-routing based on keywords
 - **Multi-Platform** - Qoder, OpenCode, Claude Code, Bailian
-- **Advanced Models** - Support for Bailian Coding Plan models (qwen3-coder-plus, qwen3-coder-next, qwen3-max-2026-01-23, glm-4.7)
+- **Advanced Models** - Support for 4 core models: qwen3.5-plus (vision), kimi-k2.5 (vision), glm-5, MiniMax-M2.5
 - **Web Panel** - Real-time monitoring with WebSocket support (v5.0)
 - **OpenCode SDK v1 Compatible** - Full API compatibility with OpenCode 1.2.24+
 
@@ -206,12 +206,12 @@ ultrawork-sanguo/
 ### v1.8.1 (2026-03-09)
 
 - ✨ **New Models**: Added Bailian Coding Plan models support
-  - `qwen3-coder-plus` - Primary coding model for specialists
-  - `qwen3-coder-next` - Fast fallback for coding tasks
+  - `qwen3.5-plus` - Primary coding model for specialists
+  - `qwen3.5-plus` - Fast fallback for coding tasks
   - `qwen3-max-2026-01-23` - Latest Qwen Max variant
   - `glm-4.7` - Updated GLM model
 - 🔧 **Updated**: Enhanced fallback chains for all coding specialists (GaoShun, ChenDao, ChengYu, JiaXu, PangLin, YanYan)
-- 🔧 **Updated**: LiuYe (E2E Test) model upgraded to `qwen3-coder-next`
+- 🔧 **Updated**: LiuYe (E2E Test) model upgraded to `qwen3.5-plus`
 
 ### v1.8.0 (2026-03-08)
 
