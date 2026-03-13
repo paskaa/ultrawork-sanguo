@@ -110,8 +110,6 @@
       "name": "高顺",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -125,8 +123,6 @@
       "name": "陈到",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -262,8 +258,6 @@
       "name": "王双",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -277,8 +271,6 @@
       "name": "张翼",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -305,8 +297,6 @@
       "name": "乐进",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -320,8 +310,6 @@
       "name": "李典",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -348,8 +336,6 @@
       "name": "毛玠",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -363,8 +349,6 @@
       "name": "董昭",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -391,8 +375,6 @@
       "name": "郭淮",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -419,8 +401,6 @@
       "name": "凌统",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -434,8 +414,6 @@
       "name": "丁奉",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -462,8 +440,6 @@
       "name": "周泰",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -544,8 +520,6 @@
       "name": "程昱",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -559,8 +533,6 @@
       "name": "贾诩",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -574,7 +546,6 @@
       "name": "刘晔",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -601,8 +572,6 @@
       "name": "庞林",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -616,8 +585,6 @@
       "name": "严颜",
       "model": "bailian/qwen3.5-plus",
       "fallback_models": [
-        "bailian/qwen3.5-plus",
-        "bailian/qwen3.5-plus",
         "bailian/glm-5"
       ],
       "temperature": 0.1,
@@ -650,7 +617,20 @@
       ],
       "variant": "high",
       "description": "攻城拔寨 - 前端、UI/UX、设计相关工作",
-      "keywords": [],
+      "keywords": [
+        "UI",
+        "Vue",
+        "前端",
+        "组件",
+        "页面",
+        "界面",
+        "样式",
+        "CSS",
+        "交互",
+        "布局",
+        "element",
+        "设计"
+      ],
       "primaryAgent": "zhaoyun",
       "supportAgents": []
     },
@@ -662,7 +642,17 @@
       ],
       "variant": "high",
       "description": "深入敌阵 - 深度自主调研与执行",
-      "keywords": [],
+      "keywords": [
+        "重构",
+        "架构",
+        "实现",
+        "开发",
+        "复杂",
+        "功能",
+        "模块",
+        "系统",
+        "集成"
+      ],
       "primaryAgent": "zhaoyun",
       "supportAgents": []
     },
@@ -673,7 +663,17 @@
         "bailian/qwen3.5-plus"
       ],
       "description": "速战速决 - 单文件修改、小修复",
-      "keywords": [],
+      "keywords": [
+        "修复",
+        "bug",
+        "fix",
+        "修改",
+        "更新",
+        "改",
+        "typo",
+        "错",
+        "问题"
+      ],
       "primaryAgent": "zhangfei",
       "supportAgents": []
     },
@@ -685,7 +685,17 @@
       ],
       "variant": "high",
       "description": "运筹帷幄 - 复杂逻辑、架构决策",
-      "keywords": [],
+      "keywords": [
+        "设计",
+        "方案",
+        "决策",
+        "架构",
+        "规划",
+        "思考",
+        "分析",
+        "策略",
+        "评估"
+      ],
       "primaryAgent": "zhouyu",
       "supportAgents": []
     },
@@ -696,7 +706,15 @@
         "bailian/MiniMax-M2.5"
       ],
       "description": "质量把关 - 代码审查、质量检查",
-      "keywords": [],
+      "keywords": [
+        "review",
+        "审查",
+        "检查",
+        "质量",
+        "优化",
+        "重构建议",
+        "Code Review"
+      ],
       "primaryAgent": "guanyu",
       "supportAgents": []
     },
@@ -707,7 +725,16 @@
         "bailian/glm-5"
       ],
       "description": "情报侦察 - 代码搜索、问题定位",
-      "keywords": [],
+      "keywords": [
+        "搜索",
+        "查找",
+        "定位",
+        "找到",
+        "search",
+        "find",
+        "locate",
+        "grep"
+      ],
       "primaryAgent": "simayi",
       "supportAgents": []
     },
@@ -718,7 +745,15 @@
         "bailian/MiniMax-M2.5"
       ],
       "description": "文书撰写 - 文档编写、信息整理",
-      "keywords": [],
+      "keywords": [
+        "文档",
+        "doc",
+        "readme",
+        "说明",
+        "注释",
+        "文档化",
+        "document"
+      ],
       "primaryAgent": "simayi",
       "supportAgents": []
     },
@@ -729,7 +764,13 @@
         "bailian/MiniMax-M2.5"
       ],
       "description": "后备支援 - 特殊任务、探索任务、实验性功能",
-      "keywords": [],
+      "keywords": [
+        "特殊",
+        "实验",
+        "备用",
+        "支援",
+        "reserve"
+      ],
       "primaryAgent": "machao",
       "supportAgents": []
     },
@@ -740,7 +781,18 @@
         "bailian/qwen3.5-plus"
       ],
       "description": "监察诊断 - 前后端日志监控、E2E测试、系统健康检查",
-      "keywords": [],
+      "keywords": [
+        "监控",
+        "日志",
+        "异常",
+        "告警",
+        "E2E",
+        "测试",
+        "console",
+        "network",
+        "API错误",
+        "系统资源"
+      ],
       "primaryAgent": "manchong",
       "supportAgents": []
     },
@@ -751,7 +803,16 @@
         "bailian/qwen3.5-plus"
       ],
       "description": "质量保障 - 单元测试、集成测试、E2E测试、测试覆盖率",
-      "keywords": [],
+      "keywords": [
+        "测试",
+        "test",
+        "单元测试",
+        "集成测试",
+        "覆盖率",
+        "JUnit",
+        "Vitest",
+        "写测试"
+      ],
       "primaryAgent": "xushu",
       "supportAgents": []
     },
@@ -762,7 +823,17 @@
         "bailian/MiniMax-M2.5"
       ],
       "description": "文件操作 - 文件迁移、目录整合、配置管理、备份恢复",
-      "keywords": [],
+      "keywords": [
+        "迁移",
+        "整合",
+        "合并",
+        "备份",
+        "文件操作",
+        "目录",
+        "move",
+        "merge",
+        "backup"
+      ],
       "primaryAgent": "jiangwei",
       "supportAgents": []
     },
@@ -773,7 +844,17 @@
         "bailian/MiniMax-M2.5"
       ],
       "description": "DevOps - CI/CD流水线、容器化部署、自动化运维、环境管理",
-      "keywords": [],
+      "keywords": [
+        "DevOps",
+        "CI/CD",
+        "Jenkins",
+        "Docker",
+        "K8s",
+        "Kubernetes",
+        "部署",
+        "自动化",
+        "容器"
+      ],
       "primaryAgent": "dengai",
       "supportAgents": []
     },
@@ -784,7 +865,16 @@
         "bailian/MiniMax-M2.5"
       ],
       "description": "数据库 - 数据库架构设计、SQL优化、数据迁移、备份恢复",
-      "keywords": [],
+      "keywords": [
+        "数据库",
+        "SQL",
+        "MySQL",
+        "PostgreSQL",
+        "索引",
+        "优化",
+        "迁移",
+        "ETL"
+      ],
       "primaryAgent": "zhangliao",
       "supportAgents": []
     },
@@ -795,7 +885,16 @@
         "bailian/MiniMax-M2.5"
       ],
       "description": "安全 - 安全审计、渗透测试、漏洞扫描、加密策略",
-      "keywords": [],
+      "keywords": [
+        "安全",
+        "Security",
+        "渗透测试",
+        "漏洞",
+        "扫描",
+        "加密",
+        "审计",
+        "认证"
+      ],
       "primaryAgent": "yujin",
       "supportAgents": []
     },
@@ -806,7 +905,16 @@
         "bailian/MiniMax-M2.5"
       ],
       "description": "性能优化 - 性能分析、系统调优、容量规划、负载测试",
-      "keywords": [],
+      "keywords": [
+        "性能",
+        "优化",
+        "Profiling",
+        "JVM",
+        "调优",
+        "压力测试",
+        "容量",
+        "并发"
+      ],
       "primaryAgent": "zhanghe",
       "supportAgents": []
     },
@@ -817,7 +925,16 @@
         "bailian/MiniMax-M2.5"
       ],
       "description": "移动开发 - iOS/Android开发、跨平台方案、移动性能优化",
-      "keywords": [],
+      "keywords": [
+        "iOS",
+        "Android",
+        "移动端",
+        "App",
+        "Flutter",
+        "React Native",
+        "Swift",
+        "Kotlin"
+      ],
       "primaryAgent": "ganning",
       "supportAgents": []
     },
@@ -828,7 +945,15 @@
         "bailian/MiniMax-M2.5"
       ],
       "description": "API设计 - RESTful设计、GraphQL、API文档、版本管理",
-      "keywords": [],
+      "keywords": [
+        "API",
+        "RESTful",
+        "GraphQL",
+        "接口",
+        "Swagger",
+        "接口文档",
+        "版本管理"
+      ],
       "primaryAgent": "taishici",
       "supportAgents": []
     },
@@ -839,7 +964,16 @@
         "bailian/MiniMax-M2.5"
       ],
       "description": "人工智能 - 机器学习、深度学习、智能推荐、NLP处理",
-      "keywords": [],
+      "keywords": [
+        "AI",
+        "机器学习",
+        "深度学习",
+        "ML",
+        "推荐系统",
+        "NLP",
+        "TensorFlow",
+        "PyTorch"
+      ],
       "primaryAgent": "luxun",
       "supportAgents": []
     },
@@ -850,7 +984,15 @@
         "bailian/MiniMax-M2.5"
       ],
       "description": "Web3 - 区块链开发、智能合约、DApp、DeFi协议",
-      "keywords": [],
+      "keywords": [
+        "Web3",
+        "区块链",
+        "智能合约",
+        "Solidity",
+        "DApp",
+        "DeFi",
+        "Ethereum"
+      ],
       "primaryAgent": "lvmeng",
       "supportAgents": []
     }
